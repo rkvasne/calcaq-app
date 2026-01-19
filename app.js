@@ -67,7 +67,14 @@ function isWithinFourYears(dateStr, now) {
   return expiry.getTime() >= today.getTime();
 }
 
-function renderDateInputs(container, prefix, count, labelPrefix) {
+function formatDateInputValue(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function renderDateInputs(container, prefix, count, labelPrefix, now) {
   const existing = {};
   container.querySelectorAll("input[type='date']").forEach(input => {
     existing[input.id] = input.value;
@@ -80,11 +87,17 @@ function renderDateInputs(container, prefix, count, labelPrefix) {
 
     const label = document.createElement("label");
     label.htmlFor = `${prefix}_date_${i}`;
-    label.textContent = `${labelPrefix} ${i} — data de conclusão`;
+    // Para capacitações, usar texto específico sobre última ação
+    if (prefix === "cap") {
+      label.textContent = `${labelPrefix} ${i} — data da última ação que completou o conjunto`;
+    } else {
+      label.textContent = `${labelPrefix} ${i} — data de conclusão`;
+    }
 
     const input = document.createElement("input");
     input.type = "date";
     input.id = `${prefix}_date_${i}`;
+    input.max = formatDateInputValue(now);
     if (existing[input.id]) input.value = existing[input.id];
     input.addEventListener("change", calcular);
     input.addEventListener("input", calcular);
@@ -134,8 +147,16 @@ function calcular() {
   if (String(certCount) !== String(el.cert.value)) el.cert.value = String(certCount);
   if (String(capCount) !== String(el.cap.value)) el.cap.value = String(capCount);
 
-  renderDateInputs(el.certDates, "cert", certCount, "Certificação");
-  renderDateInputs(el.capDates, "cap", capCount, "Capacitação 120h");
+  renderDateInputs(el.certDates, "cert", certCount, "Certificação", now);
+  renderDateInputs(el.capDates, "cap", capCount, "Conjunto de 120h", now);
+  const maxRows = Math.max(certCount, capCount);
+  const rootStyles = getComputedStyle(document.documentElement);
+  const rowHeightValue = rootStyles.getPropertyValue("--date-row-height").trim();
+  const parsedRowHeight = Number.parseFloat(rowHeightValue.replace("rem", ""));
+  const rowHeightRem = Number.isFinite(parsedRowHeight) ? parsedRowHeight : 4.25;
+  const minHeight = maxRows > 0 ? `${maxRows * rowHeightRem}rem` : "0";
+  el.certDates.style.minHeight = minHeight;
+  el.capDates.style.minHeight = minHeight;
 
   const considerado = [];
   const descartado = [];
@@ -186,7 +207,7 @@ function calcular() {
     if (gradOpt !== "none") {
       let nota = "";
       if (gradOpt === "tecnico") {
-        nota = "Graduação (Técnico com nível superior)";
+        nota = "Graduação (Técnico que ingressou com nível médio)";
       } else if (gradOpt === "second") {
         nota = "2ª Graduação (Analista ou Técnico com duas graduações)";
       }
@@ -236,18 +257,18 @@ function calcular() {
     // Se não tem data, assume válido com aviso
     if (!dateStr) {
        capVR += 0.2;
-       considerado.push(`Capacitação 120h ${i}: ${formatVR(0.2)} VR (data não informada)`);
-       pendente.push(`Capacitação 120h ${i} — sem data (considerado no cálculo, verifique a validade de 4 anos).`);
+       considerado.push(`Conjunto de 120h ${i}: ${formatVR(0.2)} VR (data não informada)`);
+       pendente.push(`Conjunto de 120h ${i} — sem data da última ação (considerado no cálculo, verifique a validade de 4 anos).`);
        continue;
     }
 
     const vigente = isWithinFourYears(dateStr, now);
     if (!vigente) {
-      descartado.push(`Capacitação 120h ${i} — fora da vigência de 4 anos.`);
+      descartado.push(`Conjunto de 120h ${i} — fora da vigência de 4 anos (data da última ação: ${dateStr}).`);
       continue;
     }
     capVR += 0.2;
-    considerado.push(`Capacitação 120h ${i}: ${formatVR(0.2)} VR`);
+    considerado.push(`Conjunto de 120h ${i}: ${formatVR(0.2)} VR (última ação: ${dateStr})`);
   }
 
   totalVR += capVR;
@@ -273,11 +294,6 @@ function calcular() {
   updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCount, getGradOption() !== "none");
 }
 
-// Event listener para radio buttons de graduação
-document.getElementsByName("grad_option").forEach(radio => {
-  radio.addEventListener("change", calcular);
-});
-
 function updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCount, hasGrad) {
   const div = document.getElementById("adviceBox");
   if(!div) return;
@@ -288,7 +304,7 @@ function updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCou
   if (capVR < 0.6) {
      const missing = (3 - capCount);
      if (missing > 0) {
-       msg += `<p>💡 <strong>Dica rápida:</strong> Você ainda pode acumular mais <strong>${missing} capacitação(ões) de 120h</strong>. Cada uma adiciona 0,2 VR ao seu total, independente de outros títulos.</p>`;
+       msg += `<p>💡 <strong>Dica rápida:</strong> Você ainda pode acumular mais <strong>${missing} conjunto(s) de 120h</strong>. Cada conjunto adiciona 0,2 VR ao seu total, independente de outros títulos. Lembre-se: cada conjunto deve totalizar pelo menos 120 horas (pode ser composto por múltiplas ações/cursos).</p>`;
      }
   }
   
@@ -319,13 +335,15 @@ function updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCou
   el.doutorado,
   el.mestrado,
   el.pos,
-  el.graduacao,
-  el.tecnicoNivelMedio,
   el.cert,
   el.cap
-].forEach(node => {
+].filter(Boolean).forEach(node => {
   node.addEventListener("change", calcular);
   node.addEventListener("input", calcular);
+});
+
+document.getElementsByName("grad_option").forEach(radio => {
+  radio.addEventListener("change", calcular);
 });
 
 calcular();

@@ -92,6 +92,16 @@ O sistema deve:
 
 * Regra geral: AQ de curso de graduação é devido para **segundo curso de graduação** (máx. 1)
 * Exceção: ao ocupante de **Técnico Judiciário** nomeado com requisito de escolaridade de nível médio ou equivalente, é assegurado o AQ para o **primeiro** curso de graduação
+* Se o ingresso exigiu nível superior, aplica-se a regra geral (segunda graduação)
+* Mesmo com duas graduações, o adicional é limitado a **1 VR**
+
+### 5.7 Disposições legais adicionais (operacionais)
+
+* As áreas e temas de interesse institucional são definidos por regulamento de cada órgão
+* O AQ é devido a partir da data de apresentação do título, diploma ou certificado
+* Servidor cedido não faz jus ao AQ, salvo exceções legais específicas
+* VPNI vinculada ao Técnico (regra anterior) é convertida em AQ quando aplicável
+* O requisito de escolaridade do cargo de Técnico deve ser considerado para aplicação da exceção do inciso VII
 
 ---
 
@@ -121,7 +131,7 @@ Itens de menor prioridade devem ser **desconsiderados automaticamente**, com avi
   * Pós-graduações (0 a 2)
   * Certificações (0 a 2)
   * Capacitações (0 a 3)
-* Checkbox para Curso de graduação (regra do inciso VII), com opção de indicar a exceção do Técnico
+* Seletor de opção única para Curso de graduação (regra do inciso VII), com opção de indicar a exceção do Técnico
 * Para Certificações e Capacitações: campo de data de conclusão para validação da vigência de 4 anos
 
 ### 7.2 Cálculo Automático

@@ -45,15 +45,7 @@
         </div>
 
         <div class="form-field">
-          <label class="field-label" for="pos">Pós-graduações lato sensu</label>
-          <div class="field-control">
-            <input type="number" id="pos" min="0" max="2" value="0" />
-            <span class="hint">1 × VR cada (até 2). Entra no teto de 2 VR com Graduação e Certificações.</span>
-          </div>
-        </div>
-
-        <div class="form-field">
-          <label class="field-label">Curso de Graduação (inciso VII)</label>
+          <label class="field-label">Curso de Graduação (inciso VII) <span class="tip" title="Conta no máximo 1 graduação (1 VR).">ⓘ</span></label>
           <div class="field-group">
             <label class="checkbox-row">
               <input type="radio" name="grad_option" id="grad_none" value="none" checked />
@@ -62,37 +54,50 @@
             
             <label class="checkbox-row">
               <input type="radio" name="grad_option" id="grad_second" value="second" />
-              <span>Tenho uma 2ª Graduação</span>
+              <span>Tenho uma 2ª Graduação <span class="tip" title="Regra geral: só a segunda graduação gera AQ (1 VR).">ⓘ</span></span>
             </label>
-            <div class="micro">Regra geral: o AQ é devido para a segunda graduação.</div>
+            <div class="micro">Conta 1 VR pela segunda graduação, se o cargo já exigia nível superior.</div>
             
             <label class="checkbox-row">
               <input type="radio" name="grad_option" id="grad_tecnico" value="tecnico" />
-              <span>Sou Técnico e tenho Graduação</span>
+              <span>Sou Técnico e tenho Graduação <span class="tip" title="Exceção: se ingressou com exigência de nível médio, a primeira graduação gera AQ.">ⓘ</span></span>
             </label>
-            <div class="micro">Exceção legal: se o edital exigiu apenas nível médio, a primeira graduação conta para o AQ.</div>
+            <div class="micro">Se ingressou como Técnico com exigência de nível médio, a primeira graduação conta (1 VR).</div>
+            <div class="micro">Mesmo com duas graduações, o adicional é limitado a 1 VR.</div>
           </div>
         </div>
 
         <div class="form-field">
-          <label class="field-label" for="cert">Certificações profissionais (inciso VIII)</label>
+          <label class="field-label" for="cap">Capacitações (conjuntos de 120h) <span class="tip" title="Capacitações 120h valem 0,2 VR por conjunto (máx. 3) e acumulam com tudo.">ⓘ</span></label>
+          <div class="field-control">
+            <input type="number" id="cap" min="0" max="3" value="0" />
+            <span class="hint">0,2 × VR por conjunto de 120h. Máx. 3 conjuntos. Vigência 4 anos. Pode acumular com qualquer outro.</span>
+          </div>
+          <div class="micro">Cada conjunto deve totalizar pelo menos 120 horas (pode ser composto por múltiplas ações/cursos). Ao completar 120h, adquire 0,2 VR que expira em 4 anos contados da última ação que completar o conjunto.</div>
+          <div id="capDates" class="dates" aria-live="polite"></div>
+          <div class="micro">O calendário limita a seleção até a data de hoje <span class="tip" title="Datas futuras não podem ser selecionadas no calendário.">ⓘ</span></div>
+          <div class="micro accent">Informe a data da última ação que completou cada conjunto de 120h. Se não souber, deixe em branco (o cálculo será feito com aviso).</div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="pos">Pós-graduações lato sensu</label>
+          <div class="field-control">
+            <input type="number" id="pos" min="0" max="2" value="0" />
+            <span class="hint">1 × VR cada (até 2). Entra no teto de 2 VR com Graduação e Certificações.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="cert">Certificações profissionais (inciso VIII) <span class="tip" title="Na tabela, certificações (0,5 VR, máx. 2) são distintas de capacitações 120h (0,2 VR, máx. 3).">ⓘ</span></label>
           <div class="field-control">
             <input type="number" id="cert" min="0" max="2" value="0" />
             <span class="hint">0,5 × VR cada. Vigência 4 anos. Entra no teto de 2 VR (pós/grad/cert).</span>
           </div>
           <div id="certDates" class="dates" aria-live="polite"></div>
+          <div class="micro">O calendário limita a seleção até a data de hoje <span class="tip" title="Datas futuras não podem ser selecionadas no calendário.">ⓘ</span></div>
           <div class="micro accent">Se não souber a data exata, deixe em branco (o cálculo será feito com aviso).</div>
         </div>
 
-        <div class="form-field">
-          <label class="field-label" for="cap">Capacitações (120h)</label>
-          <div class="field-control">
-            <input type="number" id="cap" min="0" max="3" value="0" />
-            <span class="hint">0,2 × VR cada. Vigência 4 anos. Pode acumular com qualquer outro.</span>
-          </div>
-          <div id="capDates" class="dates" aria-live="polite"></div>
-          <div class="micro accent">Se não souber a data exata, deixe em branco (o cálculo será feito com aviso).</div>
-        </div>
       </div>
     </section>
 
@@ -149,6 +154,19 @@
       </div>
     </section>
   </div>
+
+  <footer class="footer">
+    <div class="footer__block">
+      <div class="footer__title">Fontes consultadas</div>
+      <div class="footer__links">
+        <a href="https://www.planalto.gov.br/ccivil_03/_Ato2004-2006/2006/Lei/L11416.htm" target="_blank" rel="noopener noreferrer">Lei nº 11.416/2006</a>
+        <a href="https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/L15292.htm" target="_blank" rel="noopener noreferrer">Lei nº 15.292/2025</a>
+      </div>
+    </div>
+    <div class="footer__disclaimer">
+      Aviso legal: este formulário é apenas uma análise preliminar e não constitui ferramenta oficial. Os resultados são estimativos e podem conter inconsistências. O reconhecimento de títulos, certificações, capacitações e o pagamento do AQ dependem do órgão/tribunal competente, do regulamento interno e das normas aplicáveis.
+    </div>
+  </footer>
 </div>
 
 <script src="app.js" defer></script>
