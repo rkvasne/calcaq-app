@@ -111,7 +111,7 @@ body {
 
 @media (min-width: 900px) {
   .grid {
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 2fr;
     align-items: start;
   }
 }
@@ -184,7 +184,7 @@ input[type="date"] {
 }
 
 #pos, #cert, #cap {
-  max-width: 80px;
+  max-width: 100px;
 }
 
 input[type="checkbox"] {
