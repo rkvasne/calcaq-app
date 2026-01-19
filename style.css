@@ -176,11 +176,12 @@ input[type="date"] {
   background: var(--bg0);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-family: inherit;
   width: 100%;
   box-sizing: border-box;
+  line-height: 1.2;
 }
 
 #pos, #cert, #cap {
