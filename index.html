@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculadora de Adicional de Qualificação (AQ)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+  <header class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Adicional de Qualificação</h1>
+      <div class="hero__subtitle">Entenda e calcule o AQ (Lei 11.416/2006, com alterações da Lei 15.292/2025)</div>
+    </div>
+    <div class="vr-control">
+      <label for="vr">Valor do VR (R$)</label>
+      <input type="number" id="vr" value="714.48" step="0.01" min="0" />
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="panel" aria-label="Entradas">
+      <h2>Vamos calcular seu AQ</h2>
+      <div class="hint">Responda em ordem, do maior para o menor. O cálculo atualiza automaticamente.</div>
+
+      <div class="form-grid" aria-label="Formulário padrão">
+        <div class="form-field">
+          <label class="field-label">Doutorado</label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="doutorado" />
+            <span>Possuo Doutorado</span>
+          </label>
+          <div class="micro">5 × VR. Não soma com Mestrado. Absorção de adicionais menores, exceto Capacitações (120h).</div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Mestrado</label>
+          <label class="checkbox-row">
+            <input type="checkbox" id="mestrado" />
+            <span>Possuo Mestrado</span>
+          </label>
+          <div class="micro">3,5 × VR. Não soma com Doutorado. Absorção de adicionais menores, exceto Capacitações (120h).</div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="pos">Pós-graduações lato sensu</label>
+          <div class="field-control">
+            <input type="number" id="pos" min="0" max="2" value="0" />
+            <span class="hint">1 × VR cada (até 2). Entra no teto de 2 VR com Graduação e Certificações.</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label">Curso de Graduação (inciso VII)</label>
+          <div class="field-group">
+            <label class="checkbox-row">
+              <input type="checkbox" id="graduacao" />
+              <span>Tenho uma 2ª Graduação</span>
+            </label>
+            <div class="micro">Regra geral: o AQ é devido para a segunda graduação.</div>
+            <label class="checkbox-row">
+              <input type="checkbox" id="tecnicoNivelMedio" />
+              <span>Sou Técnico e tenho Graduação</span>
+            </label>
+            <div class="micro">Exceção legal: se o edital exigiu apenas nível médio, a primeira graduação conta para o AQ.</div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="cert">Certificações profissionais (inciso VIII)</label>
+          <div class="field-control">
+            <input type="number" id="cert" min="0" max="2" value="0" />
+            <span class="hint">0,5 × VR cada. Vigência 4 anos. Entra no teto de 2 VR (pós/grad/cert).</span>
+          </div>
+          <div id="certDates" class="dates" aria-live="polite"></div>
+          <div class="micro accent">Se não souber a data exata, deixe em branco (o cálculo será feito com aviso).</div>
+        </div>
+
+        <div class="form-field">
+          <label class="field-label" for="cap">Capacitações (120h)</label>
+          <div class="field-control">
+            <input type="number" id="cap" min="0" max="3" value="0" />
+            <span class="hint">0,2 × VR cada. Vigência 4 anos. Pode acumular com qualquer outro.</span>
+          </div>
+          <div id="capDates" class="dates" aria-live="polite"></div>
+          <div class="micro accent">Se não souber a data exata, deixe em branco (o cálculo será feito com aviso).</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Resultado">
+      <h2>Resultado</h2>
+      <div class="result">
+        <div class="result__headline">
+          <div class="result__kpi">
+            <div>
+              <div class="kpi__label">Total em VR</div>
+              <div class="kpi__value" id="totalVR">0,00</div>
+            </div>
+            <div>
+              <div class="kpi__label">Valor mensal</div>
+              <div class="kpi__value" id="totalRS">R$ 0,00</div>
+            </div>
+          </div>
+          <div class="badges" id="badges"></div>
+        </div>
+
+        <div class="lists">
+          <div class="list">
+            <h3>Considerado no cálculo</h3>
+            <ul id="considerado"></ul>
+          </div>
+
+          <div class="list list--danger" id="descartadosBox" style="display:none;">
+            <h3>Descartado</h3>
+            <ul id="descartado"></ul>
+          </div>
+
+          <div class="list list--pending" id="pendentesBox" style="display:none;">
+            <h3>Pendente por falta de data</h3>
+            <ul id="pendente"></ul>
+          </div>
+          
+          <div class="advice" id="adviceBox" style="display:none;"></div>
+        </div>
+
+        <div class="rule-card">
+          <div class="rule-item">
+            <strong>Teto de 2 VR</strong>
+            <span>Aplica-se apenas ao conjunto Pós-graduação + Curso de graduação + Certificações.</span>
+          </div>
+          <div class="rule-item">
+            <strong>Vigência 4 anos</strong>
+            <span>Aplica-se a Certificações e Capacitações.</span>
+          </div>
+          <div class="rule-item">
+            <strong>Aposentadoria/pensão</strong>
+            <span>Doutorado, Mestrado, Pós-graduação e Curso de graduação entram no cálculo (se obtidos antes da inativação). Certificações e Capacitações não entram.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+
+</body>
+</html>
