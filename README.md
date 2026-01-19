@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**Sistema Web para Cálculo do Adicional de Qualificação**  
+**Formulário Web para Cálculo do Adicional de Qualificação**  
 *Baseado nas Leis 11.416/2006 e 15.292/2025*
 
 [![Status](https://img.shields.io/badge/status-active-success.svg?style=for-the-badge)](CHANGELOG.md)
@@ -16,7 +16,7 @@
 
 ## 📋 Sobre o Projeto
 
-Sistema web simples e objetivo para calcular o **Adicional de Qualificação (AQ)** para servidores do Judiciário. O sistema permite que o usuário informe suas titulações, certificações e capacitações e receba automaticamente o cálculo, respeitando rigorosamente as regras de acumulação, limites e tetos previstos na **Lei nº 11.416/2006**, com redação dada pela **Lei nº 15.292/2025**.
+Formulário web simples e objetivo para calcular o **Adicional de Qualificação (AQ)** para servidores do Judiciário. O formulário permite que o usuário informe suas titulações, certificações e capacitações e receba automaticamente o cálculo, respeitando rigorosamente as regras de acumulação, limites e tetos previstos na **Lei nº 11.416/2006**, com redação dada pela **Lei nº 15.292/2025**.
 
 ### 🎯 Objetivo
 

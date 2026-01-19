@@ -1,14 +1,14 @@
-# PRD – Sistema Web de Cálculo do Adicional de Qualificação (AQ)
+# PRD – Formulário Web de Cálculo do Adicional de Qualificação (AQ)
 
 ## 1. Visão Geral
 
-Sistema web simples e objetivo para permitir que o usuário informe suas titulações, certificações e capacitações e receba automaticamente o cálculo do **Adicional de Qualificação (AQ)**, respeitando rigorosamente as regras de acumulação, limites e tetos previstos na **Lei nº 11.416/2006**, com redação dada pela **Lei nº 15.292/2025**.
+Formulário web simples e objetivo para permitir que o usuário informe suas titulações, certificações e capacitações e receba automaticamente o cálculo do **Adicional de Qualificação (AQ)**, respeitando rigorosamente as regras de acumulação, limites e tetos previstos na **Lei nº 11.416/2006**, com redação dada pela **Lei nº 15.292/2025**.
 
-O foco do sistema é **clareza**, **segurança no cálculo** e **zero ambiguidade jurídica**.
+O foco do formulário é **clareza**, **segurança no cálculo** e **zero ambiguidade jurídica**.
 
 ---
 
-## 2. Objetivo do Sistema
+## 2. Objetivo do Formulário
 
 * Permitir ao usuário marcar quais títulos possui
 * Aplicar automaticamente as regras de acumulação
@@ -44,7 +44,7 @@ O foco do sistema é **clareza**, **segurança no cálculo** e **zero ambiguidad
 
 ---
 
-## 5. Regras de Negócio (núcleo do sistema)
+## 5. Regras de Negócio (núcleo do formulário)
 
 ### 5.1 Doutorado
 
@@ -68,7 +68,7 @@ Os itens abaixo **competem entre si** e **somados não podem ultrapassar 2 VR**:
 * Curso de graduação (1 VR, máx. 1)
 * Certificações profissionais (0,5 VR cada, máx. 2)
 
-O sistema deve:
+O formulário deve:
 
 * Somar esses itens
 * Aplicar corte automático ao atingir 2 VR
@@ -190,4 +190,4 @@ Itens de menor prioridade devem ser **desconsiderados automaticamente**, com avi
   * Por quê
   * O que ficou de fora
 
-Se o usuário **não tiver dúvidas após usar**, o sistema cumpriu seu papel.
+Se o usuário **não tiver dúvidas após usar**, o formulário cumpriu seu papel.

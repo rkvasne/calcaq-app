@@ -44,9 +44,17 @@
           <div class="micro">3,5 × VR. Não soma com Doutorado. Absorção de adicionais menores, exceto Capacitações (120h).</div>
         </div>
 
-        <div class="form-field">
+        <div class="form-field double">
+          <label class="field-label" for="pos">Pós-graduações lato sensu</label>
+          <div class="field-control">
+            <input type="number" id="pos" min="0" max="2" value="0" />
+            <span class="hint">1 × VR cada (até 2). Entra no teto de 2 VR com Graduação e Certificações.</span>
+          </div>
+        </div>
+
+        <div class="form-field double">
           <label class="field-label">Curso de Graduação (inciso VII) <span class="tip" title="Conta no máximo 1 graduação (1 VR).">ⓘ</span></label>
-          <div class="field-group">
+          <div class="field-group field-group--stacked">
             <label class="checkbox-row">
               <input type="radio" name="grad_option" id="grad_none" value="none" checked />
               <span>Não possuo / Não aplicável</span>
@@ -67,7 +75,7 @@
           </div>
         </div>
 
-        <div class="form-field">
+        <div class="form-field double">
           <label class="field-label" for="cap">Capacitações (conjuntos de 120h) <span class="tip" title="Capacitações 120h valem 0,2 VR por conjunto (máx. 3) e acumulam com tudo.">ⓘ</span></label>
           <div class="field-control">
             <input type="number" id="cap" min="0" max="3" value="0" />
@@ -79,15 +87,7 @@
           <div class="micro accent">Informe a data da última ação que completou cada conjunto de 120h. Se não souber, deixe em branco (o cálculo será feito com aviso).</div>
         </div>
 
-        <div class="form-field">
-          <label class="field-label" for="pos">Pós-graduações lato sensu</label>
-          <div class="field-control">
-            <input type="number" id="pos" min="0" max="2" value="0" />
-            <span class="hint">1 × VR cada (até 2). Entra no teto de 2 VR com Graduação e Certificações.</span>
-          </div>
-        </div>
-
-        <div class="form-field">
+        <div class="form-field double">
           <label class="field-label" for="cert">Certificações profissionais (inciso VIII) <span class="tip" title="Na tabela, certificações (0,5 VR, máx. 2) são distintas de capacitações 120h (0,2 VR, máx. 3).">ⓘ</span></label>
           <div class="field-control">
             <input type="number" id="cert" min="0" max="2" value="0" />
@@ -119,8 +119,8 @@
         </div>
 
         <div class="lists">
-          <div class="list">
-            <h3>Considerado no cálculo</h3>
+          <div class="list list--ok">
+            <h3>✅ Considerado no cálculo</h3>
             <ul id="considerado"></ul>
           </div>
 
@@ -130,7 +130,7 @@
           </div>
 
           <div class="list list--pending" id="pendentesBox" style="display:none;">
-            <h3>Pendente por falta de data</h3>
+            <h3>⏳ Considerados sem data (validade a confirmar)</h3>
             <ul id="pendente"></ul>
           </div>
           

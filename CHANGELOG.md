@@ -14,6 +14,20 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [0.0.4] - 2026-01-19
+
+### Changed
+- Renomeação do projeto de "Sistema Web" para "Formulário Web" na documentação
+- Reorganização dos cards do formulário:
+  - Pós-graduação e Certificações agora ocupam a linha inteira
+  - Nova ordem: Pós-graduação -> Graduação -> Capacitações -> Certificações
+- Padronização rigorosa de espaçamentos e ritmo vertical (redução de gaps)
+- Melhoria visual nos cards de resultado (cores de fundo e emojis para maior clareza)
+- Ajuste no texto de itens com pendência de data para "Considerados sem data"
+
+
+---
+
 ## [0.0.3] - 2026-01-19
 
 ### Docs
@@ -39,7 +53,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 ## [0.0.1] - 2026-01-08
 
 ### Added
-- Sistema completo de cálculo do Adicional de Qualificação (AQ)
+- Formulário completo de cálculo do Adicional de Qualificação (AQ)
 - Formulário interativo com validação em tempo real
 - Cálculo automático baseado nas Leis 11.416/2006 e 15.292/2025
 - Interface responsiva (mobile-first)
@@ -51,7 +65,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
   - Certificações profissionais (0,5 VR cada, máx. 2)
   - Capacitações 120h (0,2 VR por conjunto, máx. 3)
 - Validação de vigência de 4 anos para Certificações e Capacitações
-- Sistema de priorização automática no bloco de 2 VR
+- Mecanismo de priorização automática no bloco de 2 VR
 - Absorção de adicionais menores por Doutorado/Mestrado (exceto Capacitações)
 - Exibição detalhada de itens considerados, descartados e pendentes
 - Campo configurável para Valor de Referência (VR)
@@ -85,5 +99,5 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
-**Versão Atual:** 0.0.3  
+**Versão Atual:** 0.0.4  
 **Última Atualização:** 2026-01-19

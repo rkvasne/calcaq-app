@@ -275,7 +275,7 @@ function calcular() {
 
   if (!high) badges.push({ text: `Bloco: ${formatVR(blocoVR)}/2,00 VR`, variant: blocoVR > 0 ? "ok" : "" });
   badges.push({ text: `Capacitações: ${formatVR(capVR)} VR`, variant: capVR > 0 ? "ok" : "" });
-  if (pendente.length > 0) badges.push({ text: "Verifique as datas", variant: "warn" });
+  if (pendente.length > 0) badges.push({ text: "Itens considerados sem data", variant: "warn" });
 
   const totalRS = totalVR * vr;
 
