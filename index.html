@@ -51,7 +51,11 @@
         <div class="form-field double">
           <label class="field-label" for="pos">Pós-graduações lato sensu</label>
           <div class="field-control">
-            <input type="number" id="pos" min="0" max="2" value="0" />
+            <select id="pos" class="select-input">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
             <span class="hint">1 × VR cada (até 2). Entra no teto de 2 VR com Graduação e Certificações.</span>
           </div>
         </div>
@@ -82,7 +86,12 @@
         <div class="form-field double">
           <label class="field-label" for="cap">Capacitações (conjuntos de 120h) <span class="tip" title="Capacitações 120h valem 0,2 VR por conjunto (máx. 3) e acumulam com tudo.">ⓘ</span></label>
           <div class="field-control">
-            <input type="number" id="cap" min="0" max="3" value="0" />
+            <select id="cap" class="select-input">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
             <span class="hint">0,2 × VR por conjunto de 120h. Máx. 3 conjuntos. Vigência 4 anos. Pode acumular com qualquer outro.</span>
           </div>
           <div class="micro">Cada conjunto deve totalizar pelo menos 120 horas (pode ser composto por múltiplas ações/cursos). Ao completar 120h, adquire 0,2 VR que expira em 4 anos contados da última ação que completar o conjunto.</div>
@@ -94,7 +103,11 @@
         <div class="form-field double">
           <label class="field-label" for="cert">Certificações profissionais (inciso VIII) <span class="tip" title="Na tabela, certificações (0,5 VR, máx. 2) são distintas de capacitações 120h (0,2 VR, máx. 3).">ⓘ</span></label>
           <div class="field-control">
-            <input type="number" id="cert" min="0" max="2" value="0" />
+            <select id="cert" class="select-input">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
             <span class="hint">0,5 × VR cada. Vigência 4 anos. Entra no teto de 2 VR (pós/grad/cert).</span>
           </div>
           <div id="certDates" class="dates" aria-live="polite"></div>
