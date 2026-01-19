@@ -1,55 +1,54 @@
-# 📊 Calculadora de Adicional de Qualificação (AQ)
+# Calculadora de Adicional de Qualificação (AQ)
 
 <div align="center">
 
-![Logo AQ](favicon.png)
+<img src="favicon.png" alt="Logo AQ" width="256" height="256">
 
 **Formulário Web para Cálculo do Adicional de Qualificação**  
 *Baseado nas Leis 11.416/2006 e 15.292/2025*
 
 [![Status](https://img.shields.io/badge/status-active-success.svg?style=for-the-badge)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg?style=for-the-badge)](LICENSE.md)
+[![Tech](https://img.shields.io/badge/stack-HTML%20%7C%20CSS%20%7C%20JS-blue.svg?style=for-the-badge)](index.html)
 
-[Documentação](#-documentação) • [Regras de Negócio](#-regras-de-negócio) • [Como Usar](#-como-usar) • [Desenvolvimento](#-desenvolvimento)
+[Documentação](PRD.md) • [Changelog](CHANGELOG.md) • [Instalação](#-instalação-e-uso) • [Regras](#-regras-de-negócio)
 
 </div>
 
 ---
 
-## 📋 Sobre o Projeto
+## 📋 Sobre
 
-Formulário web simples e objetivo para calcular o **Adicional de Qualificação (AQ)** para servidores do Judiciário. O formulário permite que o usuário informe suas titulações, certificações e capacitações e receba automaticamente o cálculo, respeitando rigorosamente as regras de acumulação, limites e tetos previstos na **Lei nº 11.416/2006**, com redação dada pela **Lei nº 15.292/2025**.
+Formulário web simples e objetivo para calcular o **Adicional de Qualificação (AQ)** para servidores do Judiciário. O formulário permite que o usuário informe suas titulações, certificações e capacitações e receba automaticamente o cálculo, respeitando rigorosamente as regras de acumulação, limites e tetos previstos na legislação vigente.
 
-### 🎯 Objetivo
+## ✨ Funcionalidades
 
-- ✅ Permitir ao usuário marcar quais títulos possui
-- ✅ Aplicar automaticamente as regras de acumulação
-- ✅ Calcular o total de VRs válidos
-- ✅ Exibir o valor final em reais (com VR configurável)
-- ✅ Indicar claramente o que foi considerado e o que foi descartado por limite legal
-
-### 👥 Público-Alvo
-
-- Servidores do Judiciário
-- Técnicos e Analistas Judiciários
-- Sindicatos, RH e áreas administrativas
+- ✅ **Cálculo Automático**: Resultado atualizado em tempo real conforme preenchimento.
+- ✅ **Regras de Negócio**: Aplicação automática de tetos, absorções e vigências.
+- ✅ **Validação de Datas**: Verifica vigência de 4 anos para Capacitações e Certificações.
+- ✅ **Financeiro**: Exibe o valor final em reais com VR configurável.
+- ✅ **Feedback Visual**: Indica claramente o que foi considerado e o que foi descartado.
+- ✅ **Zero Dependências**: Funciona offline, sem necessidade de servidor ou instalação.
 
 ---
 
-## 🚀 Como Usar
+## 🚀 Instalação e Uso
 
-### Versão Online
+### Versão Online / Local
 
-Simplesmente abra o arquivo `index.html` em qualquer navegador moderno. Não é necessário instalação ou servidor.
+Este é um projeto **Single Page Application (SPA)** que roda inteiramente no navegador.
 
-### Recursos Principais
+1.  **Clone ou Baixe** este repositório.
+2.  Abra o arquivo `index.html` em qualquer navegador moderno (Chrome, Edge, Firefox).
+3.  **Pronto!** Não requer instalação de Node.js, Python ou servidores web.
 
-1. **Configuração do VR**: Ajuste o Valor de Referência conforme necessário (padrão: R$ 714,48)
-2. **Formulário Intuitivo**: Preencha suas qualificações seguindo a ordem hierárquica
-3. **Cálculo Automático**: O resultado é atualizado em tempo real
-4. **Resultado Detalhado**: Veja o que foi considerado, descartado ou pendente
+### Configuração Inicial
+
+1.  No topo da página, ajuste o **Valor do VR** (Valor de Referência) se necessário (padrão atualizado conforme tabela vigente).
+2.  Preencha os campos seguindo a ordem hierárquica (do maior título para o menor).
 
 ---
+
 
 ## 📚 Documentação
 
@@ -121,34 +120,20 @@ Os seguintes itens **competem entre si** e somados **não podem ultrapassar 2 VR
 
 ```
 calcaq-app/
-├── index.html              # Página principal
-├── app.js                  # Lógica de cálculo
-├── style.css               # Estilos
-├── PRD.md                  # Especificações
-├── AGENTS.md               # Instruções para IA
-├── ANALISE_INCONSISTENCIAS.md  # Análise técnica
-├── L11416.pdf              # Lei 11.416/2006
-├── L15292.pdf              # Lei 15.292/2025
-└── tabela_aq_2026.jpg      # Tabela de referência
+├── index.html       # Aplicação principal
+├── style.css        # Folha de estilos
+├── app.js           # Lógica de negócio
+├── AGENTS.md        # Guia para Agentes de IA
+└── README.md        # Documentação
 ```
 
-### Características Técnicas
+### Convenções
 
-136:- ✅ **Zero dependências** - Funciona offline
-137:- ✅ **Mobile-first** - Design responsivo
-138:- ✅ **Acessível** - ARIA labels, navegação por teclado e contraste adequado (WCAG)
-139:- ✅ **Performático** - Cálculo client-side em tempo real
-
----
-
-## 📝 Convenções
-
-### Nomenclatura
 - Arquivos: `kebab-case` (ex: `analise-inconsistencias.md`)
 - Variáveis JavaScript: `camelCase`
 - Classes CSS: `kebab-case` com BEM quando necessário
 
-### Commits (Conventional Commits)
+#### Commits (Conventional Commits)
 
 ```bash
 tipo(escopo): descrição
@@ -161,13 +146,6 @@ style: Formatação
 refactor: Refatoração
 test: Testes
 chore: Manutenção
-```
-
-**Exemplos:**
-```
-feat(calculo): adicionar validação de vigência de 4 anos
-fix(ui): corrigir espaçamento entre cards
-docs: atualizar PRD com regra de capacitações
 ```
 
 ---
@@ -221,4 +199,8 @@ Este formulário é apenas uma **análise preliminar** e **não constitui ferram
 
 ---
 
-**Última atualização:** Janeiro 2026
+<div align="center">
+
+**Calculadora AQ** • Desenvolvido com foco em simplicidade e conformidade legal.
+
+</div>

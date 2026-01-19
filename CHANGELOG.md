@@ -14,6 +14,19 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [0.0.6] - 2026-01-19
+
+### Docs
+- Reestruturação completa do README.md seguindo o padrão "Hero Section"
+- Centralização de logos, badges e links rápidos
+- Adição de seção de Instalação e Uso
+- Organização de seções de desenvolvimento e convenções
+- Correção de duplicidades no rodapé
+- Ajuste de logo para 256x256 e remoção de código redundante no AGENTS.md
+
+
+---
+
 ## [0.0.5] - 2026-01-19
 
 ### Changed
@@ -114,5 +127,5 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
-**Versão Atual:** 0.0.5  
+**Versão Atual:** 0.0.6  
 **Última Atualização:** 2026-01-19

@@ -35,6 +35,25 @@
 
 ---
 
+## 📚 Padrões de Documentação
+
+Este projeto segue o padrão "Modo Documentação" para garantir clareza e manutenção.
+
+### Regras de Ouro
+- ❌ **NUNCA** deixe docs desatualizados (alterou código, altera doc no mesmo PR).
+- ❌ **NUNCA** use "Clique aqui" ou paredes de texto.
+- ✅ **SEMPRE** defina a audiência (dev ou usuário).
+- ✅ **SEMPRE** use listas, negrito e exemplos copiáveis.
+
+### README.md (Hero Section)
+O README deve seguir o layout padrão com Hero Section centralizada:
+1. Título H1
+2. Logo (256x256px, centralizado)
+3. Descrição Curta + Subtítulo
+4. Badges e Links Rápidos
+
+---
+
 ## 📁 Estrutura do Projeto
 
 Este é um projeto **puro HTML/CSS/JavaScript** sem build step ou dependências externas.
