@@ -85,6 +85,61 @@ body {
   }
 }
 
+@media (max-width: 600px) {
+  :root {
+    --date-row-height: 4.4rem;
+    --text-xs: 0.85rem;
+    --text-sm: 1rem;
+    --text-md: 1.1rem;
+  }
+
+  .app {
+    padding: 1.5rem 1rem;
+  }
+
+  .panel {
+    padding: var(--space-4);
+  }
+
+  .panel h2 {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-1);
+  }
+
+  .form-field {
+    padding: var(--space-3);
+  }
+
+  #pos, #cert, #cap {
+    max-width: 100%;
+  }
+
+  input[type="number"],
+  input[type="date"] {
+    height: 2.75rem; /* Maior para toque */
+    line-height: 2.75rem;
+    font-size: 1rem; /* Evita zoom no iOS */
+  }
+
+  .select-input {
+    height: 2.75rem; /* Maior para toque */
+    line-height: 2.75rem;
+    font-size: 1rem; /* Evita zoom no iOS */
+  }
+
+  .checkbox-row {
+    align-items: flex-start;
+    padding: 0.25rem 0; /* Maior área de toque vertical */
+  }
+  
+  .checkbox-row input[type="checkbox"], 
+  .checkbox-row input[type="radio"] {
+    width: 1.5rem; /* Checkbox maior */
+    height: 1.5rem;
+    margin-top: 0.1rem;
+  }
+}
+
 /* Dashboard Header Style */
 .hero {
   background: var(--sidebar);

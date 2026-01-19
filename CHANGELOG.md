@@ -14,6 +14,23 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [0.0.7] - 2026-01-19
+
+### Changed
+- Melhorias significativas de UX/UI para dispositivos móveis:
+  - Substituição de inputs numéricos por dropdowns (selects)
+  - Aumento do tamanho de fontes e áreas de toque
+  - Tooltips agora acessíveis via toque (CSS puro)
+- Refatoração de código (Modo Qualidade):
+  - Extração de constantes de negócio para objeto `CONFIG` centralizado
+  - Implementação de testes unitários básicos em `tests.js`
+- Melhoria de Segurança (Modo Segurança):
+  - Remoção de `innerHTML` vulnerável em favor de manipulação segura do DOM
+- Aumento do tamanho do logo para 64px
+
+
+---
+
 ## [0.0.6] - 2026-01-19
 
 ### Docs
@@ -127,5 +144,5 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
-**Versão Atual:** 0.0.6  
+**Versão Atual:** 0.0.7  
 **Última Atualização:** 2026-01-19

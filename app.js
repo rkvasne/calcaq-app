@@ -1,3 +1,18 @@
+const CONFIG = {
+  VR_PADRAO: 714.48,
+  TETO_BLOCO: 2.0,
+  VIGENCIA_ANOS: 4,
+  VALOR_DOUTORADO: 5.0,
+  VALOR_MESTRADO: 3.5,
+  VALOR_POS: 1.0,
+  VALOR_GRAD: 1.0,
+  VALOR_CERT: 0.5,
+  VALOR_CAP: 0.2,
+  MAX_POS: 2,
+  MAX_CERT: 2,
+  MAX_CAP: 3
+};
+
 const el = {
   vr: document.getElementById("vr"),
   doutorado: document.getElementById("doutorado"),
@@ -34,7 +49,7 @@ function clampInt(value, min, max) {
 
 function parseVR(value) {
   const n = Number.parseFloat(String(value));
-  if (!Number.isFinite(n) || n < 0) return 714.48;
+  if (!Number.isFinite(n) || n < 0) return CONFIG.VR_PADRAO;
   return n;
 }
 
@@ -62,7 +77,7 @@ function parseDateOnly(dateStr) {
 function isWithinFourYears(dateStr, now) {
   const d = parseDateOnly(dateStr);
   if (!d) return null;
-  const expiry = addYears(d, 4);
+  const expiry = addYears(d, CONFIG.VIGENCIA_ANOS);
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   return expiry.getTime() >= today.getTime();
 }
@@ -175,12 +190,12 @@ function calcular() {
   let high = null;
   if (hasDoutorado || hasMestrado) {
     if (hasDoutorado && hasMestrado) {
-      high = { nome: "Doutorado", valor: 5 };
+      high = { nome: "Doutorado", valor: CONFIG.VALOR_DOUTORADO };
       descartado.push("Mestrado — não se acumula com Doutorado.");
     } else if (hasDoutorado) {
-      high = { nome: "Doutorado", valor: 5 };
+      high = { nome: "Doutorado", valor: CONFIG.VALOR_DOUTORADO };
     } else {
-      high = { nome: "Mestrado", valor: 3.5 };
+      high = { nome: "Mestrado", valor: CONFIG.VALOR_MESTRADO };
     }
 
     totalVR += high.valor;
@@ -198,11 +213,11 @@ function calcular() {
     if (anyGrad) descartado.push(`Curso de graduação — absorvido por ${high.nome}.`);
     if (anyCert) descartado.push(`Certificações profissionais (${certCount}) — absorvido por ${high.nome}.`);
   } else {
-    badges.push({ text: "Teto: 2 VR (pós/grad/cert)", variant: "ok" });
+    badges.push({ text: `Teto: ${formatVR(CONFIG.TETO_BLOCO)} VR (pós/grad/cert)`, variant: "ok" });
 
     const itens = [];
     for (let i = 1; i <= posCount; i++) {
-      itens.push({ nome: `Pós-graduação lato sensu ${i}`, valor: 1, prioridade: 1 });
+      itens.push({ nome: `Pós-graduação lato sensu ${i}`, valor: CONFIG.VALOR_POS, prioridade: 1 });
     }
 
     const gradOpt = getGradOption();
@@ -213,7 +228,7 @@ function calcular() {
       } else if (gradOpt === "second") {
         nota = "2ª Graduação (Analista ou Técnico com duas graduações)";
       }
-      if (nota) itens.push({ nome: nota, valor: 1, prioridade: 2 });
+      if (nota) itens.push({ nome: nota, valor: CONFIG.VALOR_GRAD, prioridade: 2 });
     }
 
     for (let i = 1; i <= certCount; i++) {
@@ -222,7 +237,7 @@ function calcular() {
       
       // Se não tem data, assume válido com aviso
       if (!dateStr) {
-        itens.push({ nome: `Certificação ${i}`, valor: 0.5, prioridade: 3, warning: "data não informada (assumindo válido)" });
+        itens.push({ nome: `Certificação ${i}`, valor: CONFIG.VALOR_CERT, prioridade: 3, warning: "data não informada (assumindo válido)" });
         pendente.push(`Certificação ${i} — sem data (considerado no cálculo, verifique a validade de 4 anos).`);
         continue;
       }
@@ -232,12 +247,12 @@ function calcular() {
         descartado.push(`Certificação ${i} — fora da vigência de 4 anos.`);
         continue;
       }
-      itens.push({ nome: `Certificação ${i}`, valor: 0.5, prioridade: 3 });
+      itens.push({ nome: `Certificação ${i}`, valor: CONFIG.VALOR_CERT, prioridade: 3 });
     }
 
     itens.sort((a, b) => a.prioridade - b.prioridade);
 
-    const teto = 2;
+    const teto = CONFIG.TETO_BLOCO;
     itens.forEach(item => {
       if (blocoVR + item.valor <= teto) {
         blocoVR += item.valor;
@@ -258,8 +273,8 @@ function calcular() {
     
     // Se não tem data, assume válido com aviso
     if (!dateStr) {
-       capVR += 0.2;
-       considerado.push(`Conjunto de 120h ${i}: ${formatVR(0.2)} VR (data não informada)`);
+       capVR += CONFIG.VALOR_CAP;
+       considerado.push(`Conjunto de 120h ${i}: ${formatVR(CONFIG.VALOR_CAP)} VR (data não informada)`);
        pendente.push(`Conjunto de 120h ${i} — sem data da última ação (considerado no cálculo, verifique a validade de 4 anos).`);
        continue;
     }
@@ -269,13 +284,13 @@ function calcular() {
       descartado.push(`Conjunto de 120h ${i} — fora da vigência de 4 anos (data da última ação: ${dateStr}).`);
       continue;
     }
-    capVR += 0.2;
-    considerado.push(`Conjunto de 120h ${i}: ${formatVR(0.2)} VR (última ação: ${dateStr})`);
+    capVR += CONFIG.VALOR_CAP;
+    considerado.push(`Conjunto de 120h ${i}: ${formatVR(CONFIG.VALOR_CAP)} VR (última ação: ${dateStr})`);
   }
 
   totalVR += capVR;
 
-  if (!high) badges.push({ text: `Bloco: ${formatVR(blocoVR)}/2,00 VR`, variant: blocoVR > 0 ? "ok" : "" });
+  if (!high) badges.push({ text: `Bloco: ${formatVR(blocoVR)}/${formatVR(CONFIG.TETO_BLOCO)} VR`, variant: blocoVR > 0 ? "ok" : "" });
   badges.push({ text: `Capacitações: ${formatVR(capVR)} VR`, variant: capVR > 0 ? "ok" : "" });
   if (pendente.length > 0) badges.push({ text: "Itens considerados sem data", variant: "warn" });
 
@@ -300,35 +315,74 @@ function updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCou
   const div = document.getElementById("adviceBox");
   if(!div) return;
   
-  let msg = "";
+  // Limpa o conteúdo de forma segura
+  div.textContent = "";
+  
+  const h3 = document.createElement("h3");
+  h3.textContent = "Dica para melhorar seu AQ";
+  div.appendChild(h3);
+
+  let hasAdvice = false;
+  
+  // Helper para criar parágrafo com HTML seguro (apenas tags permitidas como <strong>)
+  // Como não temos uma biblioteca de sanitização, vamos construir o DOM manualmente
+  const addAdvice = (emoji, title, text) => {
+    const p = document.createElement("p");
+    const strong = document.createElement("strong");
+    strong.textContent = `${emoji} ${title}: `;
+    p.appendChild(strong);
+    p.appendChild(document.createTextNode(text));
+    div.appendChild(p);
+    hasAdvice = true;
+  };
   
   // Cenário 1: Não atingiu teto de capacitação (0.6 VR)
-  if (capVR < 0.6) {
-     const missing = (3 - capCount);
+  const TETO_CAP = CONFIG.MAX_CAP * CONFIG.VALOR_CAP;
+  if (capVR < TETO_CAP) {
+     const missing = (CONFIG.MAX_CAP - capCount);
      if (missing > 0) {
-       msg += `<p>💡 <strong>Dica rápida:</strong> Você ainda pode acumular mais <strong>${missing} conjunto(s) de 120h</strong>. Cada conjunto adiciona 0,2 VR ao seu total, independente de outros títulos. Lembre-se: cada conjunto deve totalizar pelo menos 120 horas (pode ser composto por múltiplas ações/cursos).</p>`;
+       addAdvice(
+         "💡", 
+         "Dica rápida", 
+         `Você ainda pode acumular mais ${missing} conjunto(s) de 120h. Cada conjunto adiciona ${formatVR(CONFIG.VALOR_CAP)} VR ao seu total, independente de outros títulos. Lembre-se: cada conjunto deve totalizar pelo menos 120 horas (pode ser composto por múltiplas ações/cursos).`
+       );
      }
   }
   
   // Cenário 2: Bloco de 2 VR incompleto (sem Doutorado/Mestrado)
-  if (!high && blocoVR < 2) {
-      if (!hasGrad && posCount < 2) {
-         msg += `<p>📚 <strong>Maximize seu AQ:</strong> Você ainda não atingiu o teto de 2 VR do bloco (Pós/Grad/Cert). Considere fazer uma <strong>Pós-Graduação</strong> (1 VR) ou obter <strong>Certificações</strong> (0,5 VR cada) para preencher esse espaço.</p>`;
-      } else if (posCount < 2) {
-         msg += `<p>🎓 <strong>Pós-graduação:</strong> Você pode acumular até 2 Pós-graduações. Se tiver apenas 1 ou nenhuma, é uma ótima forma de aumentar seu AQ (1 VR cada), respeitando o teto de 2 VR.</p>`;
+  if (!high && blocoVR < CONFIG.TETO_BLOCO) {
+      if (!hasGrad && posCount < CONFIG.MAX_POS) {
+         addAdvice(
+           "📚",
+           "Maximize seu AQ",
+           `Você ainda não atingiu o teto de ${formatVR(CONFIG.TETO_BLOCO)} VR do bloco (Pós/Grad/Cert). Considere fazer uma Pós-Graduação (${formatVR(CONFIG.VALOR_POS)} VR) ou obter Certificações (${formatVR(CONFIG.VALOR_CERT)} VR cada) para preencher esse espaço.`
+         );
+      } else if (posCount < CONFIG.MAX_POS) {
+         addAdvice(
+           "🎓",
+           "Pós-graduação",
+           `Você pode acumular até ${CONFIG.MAX_POS} Pós-graduações. Se tiver apenas 1 ou nenhuma, é uma ótima forma de aumentar seu AQ (${formatVR(CONFIG.VALOR_POS)} VR cada), respeitando o teto de ${formatVR(CONFIG.TETO_BLOCO)} VR.`
+         );
       }
   }
-
+  
   // Cenário 3: Tem Mestrado mas poderia ter Doutorado
   if (high && high.nome === "Mestrado") {
-     msg += `<p>🚀 <strong>Próximo nível:</strong> Com um <strong>Doutorado</strong>, você subiria de 3,5 VR para 5 VR. É o topo da carreira em termos de qualificação.</p>`;
+     addAdvice(
+       "🚀",
+       "Próximo nível",
+       `Com um Doutorado, você subiria de ${formatVR(CONFIG.VALOR_MESTRADO)} VR para ${formatVR(CONFIG.VALOR_DOUTORADO)} VR. É o topo da carreira em termos de qualificação.`
+     );
   }
   
-  if (msg === "") {
-     msg = `<p>🎉 <strong>Parabéns!</strong> Você parece estar aproveitando bem as possibilidades do AQ. Mantenha suas certificações e capacitações em dia (validade de 4 anos) para não perder valores.</p>`;
+  if (!hasAdvice) {
+     addAdvice(
+       "🎉",
+       "Parabéns!",
+       "Você parece estar aproveitando bem as possibilidades do AQ. Mantenha suas certificações e capacitações em dia (validade de 4 anos) para não perder valores."
+     );
   }
   
-  div.innerHTML = `<h3>Dica para melhorar seu AQ</h3>${msg}`;
   div.style.display = "block";
 }
 
