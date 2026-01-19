@@ -14,6 +14,15 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [0.0.8] - 2026-01-19
+
+### Fixed
+- Correção de estilo no input de Valor do VR (setas removidas para compatibilidade com tema)
+- Correção de animação indesejada ("efeito diagonal") nas setas de inputs numéricos ao passar o mouse
+- Otimização de performance em transições CSS (removido `transition: all`)
+
+---
+
 ## [0.0.7] - 2026-01-19
 
 ### Changed
@@ -148,5 +157,5 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
-**Versão Atual:** 0.0.7  
+**Versão Atual:** 0.0.8  
 **Última Atualização:** 2026-01-19

@@ -227,6 +227,17 @@ body {
   outline: none;
 }
 
+/* Hide spin buttons for VR control (incompatible with dark theme) */
+.vr-control input::-webkit-outer-spin-button,
+.vr-control input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.vr-control input {
+  -moz-appearance: textfield;
+}
+
 /* Panels as Dashboard Widgets */
 .panel {
   background: var(--bg1);
@@ -407,7 +418,7 @@ body {
   line-height: 2.5rem;
   height: 2.5rem;
   font-size: var(--text-sm);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: var(--shadow);
   cursor: pointer;
   appearance: none;
@@ -435,7 +446,7 @@ input[type="date"] {
   line-height: 2.5rem;
   height: 2.5rem;
   font-size: var(--text-sm);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   box-shadow: var(--shadow);
 }
 
