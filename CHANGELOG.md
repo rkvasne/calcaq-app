@@ -26,6 +26,10 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
   - Implementação de testes unitários básicos em `tests.js`
 - Melhoria de Segurança (Modo Segurança):
   - Remoção de `innerHTML` vulnerável em favor de manipulação segura do DOM
+- Refinamento visual para tema "Obsidian & Mist":
+  - Redução do excesso de branco com fundo Slate-100
+  - Aumento de contraste em inputs e selects (Slate-200)
+  - Correção de arredondamento no card de valor do VR
 - Aumento do tamanho do logo para 64px
 
 
