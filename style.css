@@ -192,7 +192,8 @@ input[type="date"] {
   max-width: 100px;
 }
 
-input[type="checkbox"] {
+input[type="checkbox"],
+input[type="radio"] {
   width: 1.25rem;
   height: 1.25rem;
   accent-color: var(--accent);

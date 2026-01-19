@@ -3,8 +3,7 @@ const el = {
   doutorado: document.getElementById("doutorado"),
   mestrado: document.getElementById("mestrado"),
   pos: document.getElementById("pos"),
-  graduacao: document.getElementById("graduacao"),
-  tecnicoNivelMedio: document.getElementById("tecnicoNivelMedio"),
+  // graduacao e tecnicoNivelMedio foram substituídos por radio buttons (grad_option)
   cert: document.getElementById("cert"),
   cap: document.getElementById("cap"),
   certDates: document.getElementById("certDates"),
@@ -18,6 +17,14 @@ const el = {
   pendentesBox: document.getElementById("pendentesBox"),
   pendente: document.getElementById("pendente")
 };
+
+function getGradOption() {
+  const radios = document.getElementsByName("grad_option");
+  for (const radio of radios) {
+    if (radio.checked) return radio.value;
+  }
+  return "none";
+}
 
 function clampInt(value, min, max) {
   const n = Number.parseInt(String(value), 10);
@@ -161,7 +168,8 @@ function calcular() {
 
   if (high) {
     const anyPos = posCount > 0;
-    const anyGrad = el.graduacao.checked;
+    const gradOpt = getGradOption();
+    const anyGrad = gradOpt !== "none";
     const anyCert = certCount > 0;
     if (anyPos) descartado.push(`Pós-graduação lato sensu (${posCount}) — absorvido por ${high.nome}.`);
     if (anyGrad) descartado.push(`Curso de graduação — absorvido por ${high.nome}.`);
@@ -174,22 +182,15 @@ function calcular() {
       itens.push({ nome: `Pós-graduação lato sensu ${i}`, valor: 1, prioridade: 1 });
     }
 
-    if (el.graduacao.checked || el.tecnicoNivelMedio.checked) {
-      const isTecnico = el.tecnicoNivelMedio.checked;
-      const isSecondGrad = el.graduacao.checked;
-      
-      // Lógica: 
-      // Se marcou "Sou Técnico", ganha 1 VR (pela 1ª graduação).
-      // Se marcou "2ª Graduação", ganha 1 VR.
-      // Se marcou ambos, ganha 1 VR (limite é 1 título de graduação).
-      // Se não marcou nada, 0.
-      
-      if (isTecnico || isSecondGrad) {
-          const nota = isTecnico
-            ? "Graduação (Técnico com nível superior)"
-            : "2ª Graduação (Analista ou Técnico com duas graduações)";
-          itens.push({ nome: nota, valor: 1, prioridade: 2 });
+    const gradOpt = getGradOption();
+    if (gradOpt !== "none") {
+      let nota = "";
+      if (gradOpt === "tecnico") {
+        nota = "Graduação (Técnico com nível superior)";
+      } else if (gradOpt === "second") {
+        nota = "2ª Graduação (Analista ou Técnico com duas graduações)";
       }
+      if (nota) itens.push({ nome: nota, valor: 1, prioridade: 2 });
     }
 
     for (let i = 1; i <= certCount; i++) {
@@ -269,8 +270,13 @@ function calcular() {
   el.pendentesBox.style.display = pendente.length > 0 ? "block" : "none";
   setList(el.pendente, pendente);
   
-  updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCount, el.graduacao.checked || el.tecnicoNivelMedio.checked);
+  updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCount, getGradOption() !== "none");
 }
+
+// Event listener para radio buttons de graduação
+document.getElementsByName("grad_option").forEach(radio => {
+  radio.addEventListener("change", calcular);
+});
 
 function updateAdvice(totalVR, blocoVR, capVR, high, posCount, certCount, capCount, hasGrad) {
   const div = document.getElementById("adviceBox");

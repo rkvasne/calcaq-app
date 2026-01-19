@@ -56,12 +56,18 @@
           <label class="field-label">Curso de Graduação (inciso VII)</label>
           <div class="field-group">
             <label class="checkbox-row">
-              <input type="checkbox" id="graduacao" />
+              <input type="radio" name="grad_option" id="grad_none" value="none" checked />
+              <span>Não possuo / Não aplicável</span>
+            </label>
+            
+            <label class="checkbox-row">
+              <input type="radio" name="grad_option" id="grad_second" value="second" />
               <span>Tenho uma 2ª Graduação</span>
             </label>
             <div class="micro">Regra geral: o AQ é devido para a segunda graduação.</div>
+            
             <label class="checkbox-row">
-              <input type="checkbox" id="tecnicoNivelMedio" />
+              <input type="radio" name="grad_option" id="grad_tecnico" value="tecnico" />
               <span>Sou Técnico e tenho Graduação</span>
             </label>
             <div class="micro">Exceção legal: se o edital exigiu apenas nível médio, a primeira graduação conta para o AQ.</div>
