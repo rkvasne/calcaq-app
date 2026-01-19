@@ -55,7 +55,6 @@ Simplesmente abra o arquivo `index.html` em qualquer navegador moderno. Não é 
 |-----------|-----------|
 | [PRD.md](PRD.md) | Product Requirements Document - Especificações completas |
 | [AGENTS.md](AGENTS.md) | Instruções para agentes de IA trabalharem no projeto |
-| [ANALISE_INCONSISTENCIAS.md](ANALISE_INCONSISTENCIAS.md) | Análise de inconsistências entre leis e implementação |
 | [CHANGELOG.md](CHANGELOG.md) | Histórico de mudanças do projeto |
 
 ---

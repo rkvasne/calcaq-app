@@ -138,8 +138,7 @@ Antes de qualquer alteração em cálculos, verifique:
 - ✅ Variáveis JS: `camelCase` (ex: `totalVR`, `hasDoutorado`)
 
 ### Documentação
-141:- **Raiz**: `README.md`, `PRD.md`, `AGENTS.md`, `CHANGELOG.md` (UPPERCASE)
-142:- **Análises**: `ANALISE_INCONSISTENCIAS.md` (UPPERCASE)
+- **Raiz**: `README.md`, `PRD.md`, `AGENTS.md`, `CHANGELOG.md` (UPPERCASE)
 
 ---
 
@@ -165,7 +164,6 @@ Antes de qualquer alteração em cálculos, verifique:
 | Arquivo | Propósito |
 |---------|-----------|
 | `PRD.md` | Especificações completas de regras de negócio |
-| `ANALISE_INCONSISTENCIAS.md` | Análise técnica e correções aplicadas |
 | `README.md` | Documentação geral do projeto |
 
 ### Regras Legais

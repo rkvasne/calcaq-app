@@ -14,6 +14,13 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [0.0.3] - 2026-01-19
+
+### Docs
+- Remoção do documento de inconsistências resolvidas
+
+---
+
 ## [0.0.2] - 2026-01-19
 
 ### Changed
@@ -78,5 +85,5 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
-**Versão Atual:** 0.0.2  
+**Versão Atual:** 0.0.3  
 **Última Atualização:** 2026-01-19
