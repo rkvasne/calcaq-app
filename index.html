@@ -4,15 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Calculadora de Adicional de Qualificação (AQ)</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="app">
   <header class="hero">
-    <div class="hero__content">
-      <h1 class="hero__title">Adicional de Qualificação</h1>
-      <div class="hero__subtitle">Entenda e calcule o AQ (Lei 11.416/2006, com alterações da Lei 15.292/2025)</div>
+    <div class="hero__left">
+      <img src="favicon.png" alt="Logo AQ" class="hero__logo" />
+      <div class="hero__content">
+        <h1 class="hero__title">Adicional de Qualificação</h1>
+        <div class="hero__subtitle">Entenda e calcule o AQ (Lei 11.416/2006, com alterações da Lei 15.292/2025)</div>
+      </div>
     </div>
     <div class="vr-control">
       <label for="vr">Valor do VR (R$)</label>
@@ -83,8 +87,8 @@
           </div>
           <div class="micro">Cada conjunto deve totalizar pelo menos 120 horas (pode ser composto por múltiplas ações/cursos). Ao completar 120h, adquire 0,2 VR que expira em 4 anos contados da última ação que completar o conjunto.</div>
           <div id="capDates" class="dates" aria-live="polite"></div>
-          <div class="micro">O calendário limita a seleção até a data de hoje <span class="tip" title="Datas futuras não podem ser selecionadas no calendário.">ⓘ</span></div>
-          <div class="micro accent">Informe a data da última ação que completou cada conjunto de 120h. Se não souber, deixe em branco (o cálculo será feito com aviso).</div>
+          <div id="capHint" class="micro" style="display:none;">O calendário limita a seleção até a data de hoje <span class="tip" title="Datas futuras não podem ser selecionadas no calendário.">ⓘ</span></div>
+          <div id="capAlert" class="micro accent" style="display:none;">Informe a data da última ação que completou cada conjunto de 120h. Se não souber, deixe em branco (o cálculo será feito com aviso).</div>
         </div>
 
         <div class="form-field double">
@@ -94,8 +98,8 @@
             <span class="hint">0,5 × VR cada. Vigência 4 anos. Entra no teto de 2 VR (pós/grad/cert).</span>
           </div>
           <div id="certDates" class="dates" aria-live="polite"></div>
-          <div class="micro">O calendário limita a seleção até a data de hoje <span class="tip" title="Datas futuras não podem ser selecionadas no calendário.">ⓘ</span></div>
-          <div class="micro accent">Se não souber a data exata, deixe em branco (o cálculo será feito com aviso).</div>
+          <div id="certHint" class="micro" style="display:none;">O calendário limita a seleção até a data de hoje <span class="tip" title="Datas futuras não podem ser selecionadas no calendário.">ⓘ</span></div>
+          <div id="certAlert" class="micro accent" style="display:none;">Se não souber a data exata, deixe em branco (o cálculo será feito com aviso).</div>
         </div>
 
       </div>
@@ -130,7 +134,7 @@
           </div>
 
           <div class="list list--pending" id="pendentesBox" style="display:none;">
-            <h3>⏳ Considerados sem data (validade a confirmar)</h3>
+            <h3>⏳ Itens incluídos (pendente validação de data)</h3>
             <ul id="pendente"></ul>
           </div>
           

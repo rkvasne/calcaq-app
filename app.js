@@ -147,16 +147,18 @@ function calcular() {
   if (String(certCount) !== String(el.cert.value)) el.cert.value = String(certCount);
   if (String(capCount) !== String(el.cap.value)) el.cap.value = String(capCount);
 
+  // Toggle hints for dates
+  document.getElementById("capHint").style.display = capCount > 0 ? "block" : "none";
+  document.getElementById("capAlert").style.display = capCount > 0 ? "block" : "none";
+  document.getElementById("certHint").style.display = certCount > 0 ? "block" : "none";
+  document.getElementById("certAlert").style.display = certCount > 0 ? "block" : "none";
+
   renderDateInputs(el.certDates, "cert", certCount, "Certificação", now);
   renderDateInputs(el.capDates, "cap", capCount, "Conjunto de 120h", now);
-  const maxRows = Math.max(certCount, capCount);
-  const rootStyles = getComputedStyle(document.documentElement);
-  const rowHeightValue = rootStyles.getPropertyValue("--date-row-height").trim();
-  const parsedRowHeight = Number.parseFloat(rowHeightValue.replace("rem", ""));
-  const rowHeightRem = Number.isFinite(parsedRowHeight) ? parsedRowHeight : 4.25;
-  const minHeight = maxRows > 0 ? `${maxRows * rowHeightRem}rem` : "0";
-  el.certDates.style.minHeight = minHeight;
-  el.capDates.style.minHeight = minHeight;
+
+  // Remove fixed height synchronization to allow independent resizing
+  el.certDates.style.minHeight = "0";
+  el.capDates.style.minHeight = "0";
 
   const considerado = [];
   const descartado = [];

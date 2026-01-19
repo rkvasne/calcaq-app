@@ -2,6 +2,8 @@
 
 <div align="center">
 
+![Logo AQ](favicon.png)
+
 **Formulário Web para Cálculo do Adicional de Qualificação**  
 *Baseado nas Leis 11.416/2006 e 15.292/2025*
 

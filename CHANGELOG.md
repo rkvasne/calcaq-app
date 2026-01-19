@@ -14,6 +14,21 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
+## [0.0.5] - 2026-01-19
+
+### Changed
+- Refinamento visual completo para estilo "Dashboard Profissional" (tema Slate & Blue)
+- Barra superior escura com logo e título
+- Melhoria na responsividade e layout:
+  - Sidebar de resultados "Sticky" (fixa) em telas grandes
+  - Inputs de data agora ocupam largura fixa, alinhados à direita
+  - Correção de gaps e espaçamentos desnecessários em campos vazios
+- Adição de favicon e logo oficial do projeto
+- Ajuste semântico: "Considerados sem data" -> "Itens incluídos (pendente validação de data)"
+
+
+---
+
 ## [0.0.4] - 2026-01-19
 
 ### Changed
@@ -99,5 +114,5 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ---
 
-**Versão Atual:** 0.0.4  
+**Versão Atual:** 0.0.5  
 **Última Atualização:** 2026-01-19
