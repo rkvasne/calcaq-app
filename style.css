@@ -1,16 +1,18 @@
 :root {
-  --bg0: #1a1a1a;
-  --bg1: #2d2d2d;
-  --card: #252525;
-  --border: #404040;
-  --text: #e0e0e0;
-  --accent: #3b82f6;
-  --accent-light: #60a5fa;
+  /* Extracted Palette: #c3a85f (Gold), #941618 (Red), #290202 (Dark Red/Black) */
+  --bg0: #1a0808;
+  --bg1: #290b0b;
+  --card: #360f0f;
+  --border: #5b1313;
+  --text: #f3f3f3;
+  --accent: #c3a85f; /* Gold */
+  --accent-light: #e0c57a;
+  --brand-red: #941618;
   --danger: #ef4444;
   --success: #22c55e;
   --warning: #f59e0b;
   --radius: 8px;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
 }
 
 body {
@@ -176,12 +178,14 @@ input[type="date"] {
   background: var(--bg0);
   border: 1px solid var(--border);
   color: var(--text);
-  padding: 0.25rem 0.5rem;
+  padding: 0 0.5rem;
   border-radius: 4px;
   font-family: inherit;
   width: 100%;
   box-sizing: border-box;
-  line-height: 1.2;
+  line-height: 2rem;
+  height: 2rem;
+  font-size: 0.9rem;
 }
 
 #pos, #cert, #cap {
@@ -287,8 +291,8 @@ input[type="checkbox"] {
 .advice {
   margin-top: 2rem;
   padding: 1.5rem;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.2);
+  background: rgba(195, 168, 95, 0.1);
+  border: 1px solid rgba(195, 168, 95, 0.2);
   border-radius: var(--radius);
 }
 
@@ -345,4 +349,16 @@ input[type="checkbox"] {
 .date-row label {
   font-size: 0.75rem;
   color: #a3a3a3;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(195, 168, 95, 0.1);
+  border: 1px solid rgba(195, 168, 95, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  margin-top: 1rem;
+  font-size: 0.875rem;
 }
