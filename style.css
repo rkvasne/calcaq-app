@@ -2,36 +2,36 @@
   /* Profissional Aesthetic Theme - "Obsidian & Mist" */
   
   /* Backgrounds */
-  --bg0: #f1f5f9;           /* Slate 100 - Fundo principal mais presente */
-  --bg1: #ffffff;           /* White - Cards */
-  --surface: #f8fafc;       /* Slate 50 - Elementos secundários */
-  --surface-2: #e2e8f0;     /* Slate 200 - Inputs (contraste maior) */
-  --sidebar: #0f172a;       /* Slate 900 - Header profundo/premium */
+  --bg0: #e2e8f0;
+  --bg1: #f8fafc;
+  --surface: #f1f5f9;
+  --surface-2: #e2e8f0;
+  --sidebar: #0f172a;
   
   /* Borders */
-  --border: #e2e8f0;        /* Slate 200 - Bordas sutis */
-  --border-hover: #94a3b8;  /* Slate 400 - Hover mais visível */
+  --border: #cbd5e1;
+  --border-hover: #94a3b8;
   
   /* Text */
-  --text: #334155;          /* Slate 700 - Texto principal (conforto visual) */
-  --text-strong: #1e293b;   /* Slate 800 - Títulos (alto contraste) */
-  --text-muted: #64748b;    /* Slate 500 - Texto secundário */
-  --text-inverse: #f1f5f9;  /* Slate 100 - Texto em fundos escuros */
+  --text: #334155;
+  --text-strong: #0f172a;
+  --text-muted: #64748b;
+  --text-inverse: #f1f5f9;
   
   /* Accents - "Royal Blue" */
-  --accent: #3b82f6;        /* Blue 500 - Primário vibrante */
-  --accent-light: #60a5fa;  /* Blue 400 - Hover */
-  --accent-dark: #2563eb;   /* Blue 600 - Active */
-  --accent-subtle: #eff6ff; /* Blue 50 - Fundos de destaque */
+  --accent: #2563eb;
+  --accent-light: #3b82f6;
+  --accent-dark: #1d4ed8;
+  --accent-subtle: #eff6ff;
   
   /* Semantic - Tons pasteis/profissionais */
-  --success: #059669;       /* Emerald 600 */
-  --success-bg: #ecfdf5;    /* Emerald 50 */
-  --warning: #d97706;       /* Amber 600 */
-  --warning-bg: #fffbeb;    /* Amber 50 */
-  --danger: #dc2626;        /* Red 600 */
-  --danger-bg: #fef2f2;     /* Red 50 */
-  --info: #4f46e5;          /* Indigo 600 */
+  --success: #059669;
+  --success-bg: #ecfdf5;
+  --warning: #d97706;
+  --warning-bg: #fffbeb;
+  --danger: #dc2626;
+  --danger-bg: #fef2f2;
+  --info: #4f46e5;
   
   /* Dimensions & Spacing */
   --header-height: 64px;
@@ -235,6 +235,7 @@ body {
 }
 
 .vr-control input {
+  appearance: textfield;
   -moz-appearance: textfield;
 }
 
@@ -407,10 +408,11 @@ body {
 }
 
 .select-input {
-  background: var(--surface-2); /* Off-white para menos brilho */
+  background-color: var(--surface-2); /* Off-white para menos brilho */
   border: 1px solid var(--border);
   color: var(--text-strong);
   padding: 0 var(--space-2);
+  padding-right: 2.5rem;
   border-radius: var(--radius-sm);
   font-family: inherit;
   width: 100%;
@@ -422,15 +424,18 @@ body {
   box-shadow: var(--shadow);
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2364748b' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b8079' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 16px 12px;
 }
 
 .select-input:hover {
-  background: var(--bg1);
+  background-color: var(--bg1);
   border-color: var(--border-hover);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b8079' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
 }
 
 input[type="number"],

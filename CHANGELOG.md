@@ -10,7 +10,8 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 ## [Unreleased]
 
 ### Changed
-- Nenhuma alteração pendente
+- Restauro da paleta azul nas variáveis de tema
+- Ajuste do comportamento da seta do select no hover
 
 ---
 
