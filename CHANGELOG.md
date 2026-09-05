@@ -1,4 +1,4 @@
-# Changelog
+﻿# Changelog
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 
@@ -9,7 +9,16 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Unreleased]
 
+### Added
+
+- Governança Agents Hub no satélite: `package.json` com scripts oficiais, Husky (`pre-commit`/`post-commit`), lint-staged, Prettier 3.9.6 e tooling de análise
+- `GEMINI.md`, `.agent/hub-channel.json` (canal `auto`), `.agent/local-exceptions.json` e bloco de retenção de telemetria no `.gitignore`
+- Domínio CalcAQ preservado dentro do `AGENTS.md` alinhado ao template Hub v0.11.2
+
 ### Changed
+
+- `AGENTS.md` sincronizado com âncoras e regras críticas do Hub (jurisdição, trava destrutiva, skills, operação do satélite)
+- Ponteiro do Hub avançado para `6abdf5eb` (Hub v0.11.2)
 - Restauro da paleta azul nas variáveis de tema
 - Ajuste do comportamento da seta do select no hover
 
@@ -18,6 +27,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 ## [0.0.8] - 2026-01-19
 
 ### Fixed
+
 - Correção de estilo no input de Valor do VR (setas removidas para compatibilidade com tema)
 - Correção de animação indesejada ("efeito diagonal") nas setas de inputs numéricos ao passar o mouse
 - Otimização de performance em transições CSS (removido `transition: all`)
@@ -27,6 +37,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 ## [0.0.7] - 2026-01-19
 
 ### Changed
+
 - Melhorias significativas de UX/UI para dispositivos móveis:
   - Substituição de inputs numéricos por dropdowns (selects)
   - Aumento do tamanho de fontes e áreas de toque
@@ -42,12 +53,12 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
   - Correção de arredondamento no card de valor do VR
 - Aumento do tamanho do logo para 64px
 
-
 ---
 
 ## [0.0.6] - 2026-01-19
 
 ### Docs
+
 - Reestruturação completa do README.md seguindo o padrão "Hero Section"
 - Centralização de logos, badges e links rápidos
 - Adição de seção de Instalação e Uso
@@ -55,12 +66,12 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - Correção de duplicidades no rodapé
 - Ajuste de logo para 256x256 e remoção de código redundante no AGENTS.md
 
-
 ---
 
 ## [0.0.5] - 2026-01-19
 
 ### Changed
+
 - Refinamento visual completo para estilo "Dashboard Profissional" (tema Slate & Blue)
 - Barra superior escura com logo e título
 - Melhoria na responsividade e layout:
@@ -70,12 +81,12 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - Adição de favicon e logo oficial do projeto
 - Ajuste semântico: "Considerados sem data" -> "Itens incluídos (pendente validação de data)"
 
-
 ---
 
 ## [0.0.4] - 2026-01-19
 
 ### Changed
+
 - Renomeação do projeto de "Sistema Web" para "Formulário Web" na documentação
 - Reorganização dos cards do formulário:
   - Pós-graduação e Certificações agora ocupam a linha inteira
@@ -84,12 +95,12 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - Melhoria visual nos cards de resultado (cores de fundo e emojis para maior clareza)
 - Ajuste no texto de itens com pendência de data para "Considerados sem data"
 
-
 ---
 
 ## [0.0.3] - 2026-01-19
 
 ### Docs
+
 - Remoção do documento de inconsistências resolvidas
 
 ---
@@ -97,12 +108,14 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 ## [0.0.2] - 2026-01-19
 
 ### Changed
+
 - Padronização de tipografia e espaçamentos
 - Refinos visuais em cards e formulários
 - Tooltips para esclarecer regras na interface
 - Calendário limita seleção de datas até a data de hoje
 
 ### Docs
+
 - Remoção de redundâncias no README
 - Correções de nomenclatura de arquivos no AGENTS
 - Atualização da análise de inconsistências
@@ -112,6 +125,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 ## [0.0.1] - 2026-01-08
 
 ### Added
+
 - Formulário completo de cálculo do Adicional de Qualificação (AQ)
 - Formulário interativo com validação em tempo real
 - Cálculo automático baseado nas Leis 11.416/2006 e 15.292/2025
@@ -132,6 +146,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - Análise de inconsistências entre leis e implementação
 
 ### Changed
+
 - Ajustes de espaçamentos para melhor hierarquia visual
 - Padronização de tamanhos de fonte
 - Melhoria de contraste de cores
@@ -139,6 +154,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 - Refinamento da paleta de cores inspirada em bibliotecas modernas
 
 ### Fixed
+
 - Correção do texto sobre Técnico Judiciário (nível médio vs nível superior)
 - Atualização de textos sobre Capacitações (conjuntos de 120h)
 - Melhoria de labels e tooltips para maior clareza

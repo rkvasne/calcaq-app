@@ -1,11 +1,11 @@
-# Calculadora de Adicional de Qualificação (AQ)
+﻿# Calculadora de Adicional de Qualificação (AQ)
 
 <div align="center">
 
 <img src="favicon.png" alt="Logo AQ" width="256" height="256">
 
 **Formulário Web para Cálculo do Adicional de Qualificação**  
-*Baseado nas Leis 11.416/2006 e 15.292/2025*
+_Baseado nas Leis 11.416/2006 e 15.292/2025_
 
 [![Status](https://img.shields.io/badge/status-active-success.svg?style=for-the-badge)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-orange.svg?style=for-the-badge)](LICENSE.md)
@@ -40,7 +40,20 @@ Este é um projeto **Single Page Application (SPA)** que roda inteiramente no na
 
 1.  **Clone ou Baixe** este repositório.
 2.  Abra o arquivo `index.html` em qualquer navegador moderno (Chrome, Edge, Firefox).
-3.  **Pronto!** Não requer instalação de Node.js, Python ou servidores web.
+3.  **Pronto!** O formulário em si não exige Node.js, Python ou servidor web.
+
+### Governança (desenvolvedores / agentes)
+
+O repositório é um **satélite do Agents Hub** (junction `.agent/hub/`). Para scripts de qualidade, hooks e doctor:
+
+```bash
+npm install
+npm run doctor:satellite
+npm run check:hub
+npm run verify
+```
+
+Detalhes operacionais: `AGENTS.md` e `.agent/hub/docs/guides/guide-satellite-hub-operations.md`.
 
 ### Configuração Inicial
 
@@ -49,14 +62,14 @@ Este é um projeto **Single Page Application (SPA)** que roda inteiramente no na
 
 ---
 
-
 ## 📚 Documentação
 
-| Documento | Descrição |
-|-----------|-----------|
-| [PRD.md](PRD.md) | Product Requirements Document - Especificações completas |
-| [AGENTS.md](AGENTS.md) | Instruções para agentes de IA trabalharem no projeto |
-| [CHANGELOG.md](CHANGELOG.md) | Histórico de mudanças do projeto |
+| Documento                    | Descrição                                                |
+| ---------------------------- | -------------------------------------------------------- |
+| [PRD.md](PRD.md)             | Product Requirements Document - Especificações completas |
+| [AGENTS.md](AGENTS.md)       | Instruções para agentes de IA + governança Hub           |
+| [GEMINI.md](GEMINI.md)       | Contrato complementar para CLIs/Gemini                   |
+| [CHANGELOG.md](CHANGELOG.md) | Histórico de mudanças do projeto                         |
 
 ---
 
@@ -74,33 +87,40 @@ Este é um projeto **Single Page Application (SPA)** que roda inteiramente no na
 ### Regras Principais
 
 #### Doutorado e Mestrado
+
 - **Não se acumulam** entre si (prevalece a maior)
 - **Absorvem** adicionais de menor nível, **exceto** Capacitações (120h)
 
 #### Bloco com Teto de 2 VR
+
 Os seguintes itens **competem entre si** e somados **não podem ultrapassar 2 VR**:
+
 - Pós-graduação lato sensu (1 VR cada, máx. 2)
 - Curso de graduação (1 VR, máx. 1)
 - Certificações profissionais (0,5 VR cada, máx. 2)
 
 **Priorização automática:**
+
 1. Pós-graduação
 2. Curso de graduação
 3. Certificações
 
 #### Capacitações (120h)
+
 - **Valor**: 0,2 VR por conjunto que totalize pelo menos 120 horas
 - **Limite**: até 3 conjuntos (0 a 3)
 - **Acumulação**: Pode ser percebido cumulativamente com qualquer outro adicional
 - **Vigência**: 4 anos, contados da última ação que completar o conjunto
 
 #### Certificações Profissionais
+
 - **Valor**: 0,5 VR por certificação
 - **Limite**: até 2 certificações (0 a 2)
 - **Vigência**: 4 anos, contados da conclusão
 - **Teto**: Integra o bloco de 2 VR com Pós-graduação e Graduação
 
 #### Curso de Graduação (Inciso VII)
+
 - **Regra geral**: AQ devido para **segundo curso de graduação** (máx. 1)
 - **Exceção**: Técnico Judiciário nomeado com exigência de nível médio pode receber AQ para o **primeiro** curso de graduação
 - **Limite**: Mesmo com duas graduações, o adicional é limitado a 1 VR

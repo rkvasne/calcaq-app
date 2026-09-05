@@ -1,0 +1,48 @@
+{
+  "name": "calcaq-app",
+  "version": "0.0.8",
+  "private": true,
+  "description": "Calculadora do Adicional de Qualificação (AQ) — Judiciário",
+  "scripts": {
+    "verify": "node .agent/hub/system/scripts/verify-auto.js",
+    "verify:fix": "node .agent/hub/system/scripts/verify-auto.js --fix",
+    "verify:changed": "node .agent/hub/system/validators/validator-integrity.js --changed --profile gate",
+    "verify:fix:changed": "node .agent/hub/system/validators/validator-integrity.js --changed --fix --profile gate",
+    "verify:staged": "node .agent/hub/system/validators/validator-integrity.js --staged --profile gate",
+    "verify:auto": "node .agent/hub/system/scripts/verify-auto.js",
+    "verify:governance": "node .agent/hub/system/scripts/verify-auto.js --profile governance",
+    "verify:full": "node .agent/hub/system/validators/validator-integrity.js --profile full",
+    "verify:fix:full": "node .agent/hub/system/validators/validator-integrity.js --fix --profile full",
+    "audit:quality": "node .agent/hub/system/validators/validator-integrity.js --profile audit",
+    "context": "node .agent/hub/system/generators/build-context.js",
+    "governance:bootstrap": "node .agent/hub/system/scripts/apply-governance-scripts.js --project .",
+    "doctor:satellite": "node .agent/hub/system/scripts/doctor-satellite.js",
+    "check:hub": "node .agent/hub/system/scripts/check-hub-version.js",
+    "format": "node .agent/hub/system/scripts/format-worktree.js",
+    "format:check": "node .agent/hub/system/scripts/format-worktree.js --check",
+    "format:staged": "node .agent/hub/system/scripts/format-worktree.js --staged",
+    "format:all": "node .agent/hub/system/scripts/format-worktree.js --all",
+    "format:check:all": "node .agent/hub/system/scripts/format-worktree.js --all --check",
+    "prepare": "husky",
+    "analyze:deps": "depcruise . --config .dependency-cruiser.js",
+    "analyze:circular": "node .agent/hub/system/scripts/run-madge-circular.js --target .",
+    "analyze:unused": "knip",
+    "prompt:next": "node .agent/hub/system/scripts/prompt-next.js",
+    "build:workbench": "node .agent/hub/system/generators/build-workbench.js",
+    "workbench:serve": "node .agent/hub/system/scripts/workbench-server.js",
+    "check:runtime": "node .agent/hub/system/validators/validator-node-runtime.js --satellite-local --project .",
+    "state": "node .agent/hub/system/scripts/hub-state.js --project .",
+    "qa:governance": "npm run analyze:circular && npm run analyze:deps && npm run analyze:unused"
+  },
+  "devDependencies": {
+    "dependency-cruiser": "^18.2.0",
+    "husky": "^9.1.7",
+    "knip": "^6.34.0",
+    "lint-staged": "^16.2.7",
+    "madge": "^8.0.0",
+    "prettier": "3.9.6"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

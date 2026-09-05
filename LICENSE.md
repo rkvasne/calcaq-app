@@ -1,4 +1,4 @@
-MIT License
+﻿MIT License
 
 Copyright (c) 2026 CalcAQ
 
@@ -30,6 +30,7 @@ de títulos, certificações, capacitações e o pagamento do AQ dependem do ór
 competente, do regulamento interno e das normas aplicáveis.
 
 O desenvolvedor não se responsabiliza por:
+
 - Decisões administrativas baseadas neste software
 - Discrepâncias entre cálculos e decisões oficiais
 - Alterações na legislação após a publicação deste software

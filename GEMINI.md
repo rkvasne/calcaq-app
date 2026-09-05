@@ -1,92 +1,71 @@
-﻿# 🤖 AI Agents - CalcAQ
+﻿---
+trigger: always_on
+---
 
-> **Link do Hub:** `.agent/hub/` (Obrigatório)
+# 🤖 GEMINI.md - CalcAQ
+
+> **Hub Link:** `.agent/hub/` (READ-ONLY)
+> **Priority:** P0 (GEMINI.md) > P1 (Persona) > P2 (Skill)
 > **Hub Version:** v0.11.2
-> **Modo:** Hub-First & SSoT (Single Source of Truth)
+> **Isolamento:** Hub ↔ Satélite (Governança Bidirecional)
 
-Este projeto integra o ecossistema Agents Hub. O Agente de IA deve priorizar as definições centralizadas no Hub para comportamento e governança.
+Este projeto consome inteligência centralizada do Agents Hub através de links para `.agent/hub/` (`junction` no Windows; `symlink` em Linux/WSL).
 
-> **Convenção de exemplos:** quando este arquivo ou a documentação local mostrar comandos/caminhos de um shell específico, trate isso como **exemplo operacional**, não como contrato exclusivo. A regra geral do ecossistema continua **neutra e cross-platform**.
+> **Convenção de exemplos:** se este documento mostrar caminhos/comandos de um shell específico, isso serve como **exemplo operacional**. O contrato geral do Hub continua **neutro e cross-platform**, com equivalentes locais quando o projeto rodar fora desse ambiente.
 
----
-
-## 🖥️ Identidade & Ambiente Local
-
-- **Objetivo:** Calcular o Adicional de Qualificação (AQ) do Judiciário conforme legislação vigente
-- **Stack:** HTML + CSS + JavaScript vanilla (sem build step de app)
-- **OS Context:** Windows 11 (dev) · Cross-Platform
-- **Documentação Local:** `README.md`, `PRD.md`, `CHANGELOG.md`
+**⚠️ GOVERNANÇA:** Este projeto possui AUTONOMIA LIMITADA, estando vinculado às regras e padrões do Agents Hub.
+O Hub governa a inteligência e o DNA; este projeto as aplica localmente.
+Satélites NÃO alteram o Hub. Hub é READ-ONLY nesta instância.
 
 ---
 
-## 🧠 Governança Local (Injeção de Contexto)
+## 🚨 STOP GATES (VERIFICAÇÃO OBRIGATÓRIA)
 
-Para garantir a qualidade e o nível sênior de execução, siga as regras do Hub Central em tempo real:
+**⚠️ ANTES de QUALQUER ação, você DEVE verificar:**
 
-1. **⚓ Âncora de Identidade (Anti-Alucinação):**
-   - **MANTATÓRIO:** Antes de agir, valide sua **jurisdição**. Sua atuação é limitada estritamente ao repositório do projeto local.
-   - Consulte: Mapeamento de Corpus (`user_information`), `.agent/memory/project-status.md` e o `GEMINI.md` local.
-   - 📖 Siga o protocolo em: `.agent/hub/brain/constitution/rule-universal-principles.md` (Seção ⚓).
+### Gate 1: Proteção do Hub (READ-ONLY)
 
-2. **🚫 Jurisdição de Atuação (Anti-Transgressão):**
-   - **MANDATÓRIO:** Você deve agir EXCLUSIVAMENTE dentro da raiz deste projeto. É terminantemente PROIBIDO realizar diagnósticos, auditorias ou edições em outros diretórios visíveis no workspace. Sua única interface externa autorizada é o link `.agent/hub/`.
-   - Se o usuário solicitar ações em outros projetos enquanto você estiver instanciado aqui, pare imediatamente e declare **Incompetência de Escopo por Limite de Jurisdição**.
+```
+PERGUNTA: O arquivo que vou editar está em `.agent/hub/`?
+├─ SIM → 🛑 PARE IMEDIATAMENTE. VIOLAÇÃO DE MEMÓRIA.
+│        Informe: "Este arquivo está na zona READ-ONLY do Hub."
+│        Ação: Alterações devem ser feitas no repositório original.
+└─ NÃO → ✅ Continue para o próximo Gate.
+```
 
-3. **🧭 Diagnóstico Sistêmico (Causa Raiz Real):**
-   - Se o gargalo principal não estiver no código, você PODE dizer isso claramente e classificar o achado como `problema no projeto`, `problema no ambiente de desenvolvimento` ou `problema no setup do notebook/host`.
-   - Isso inclui casos em shell, IDE, PATH, VS Code, Codex, Git, Node, Windows ou tooling do host.
-   - **Limite mantido:** você NÃO pode sair executando mudanças fora da raiz por conta própria. Fora da raiz, só com autorização explícita do usuário e, quando fizer sentido, com o fluxo do Prompt 31 de jurisdição temporária.
+### Gate 2: Comandos Destrutivos
 
-4. **Princípios Universais (Comportamento/Comunicação):**
-   - 📖 Leia: `.agent/hub/brain/constitution/rule-universal-principles.md`
-   - Aplique: Honestidade, Anti-concordância, Regra de Commits (pt-BR) e protocolos de segurança.
-   - Responda em português com o resultado e o impacto primeiro; use linguagem simples, frases curtas e termos técnicos somente quando ajudarem.
-   - Em conclusões simples ou moderadas, mire cerca de 80–180 palavras e não repita a mesma informação em seções diferentes.
-   - Feche respostas técnicas significativas com `Fonte | Ausência | Suposição`. Inclua `Sugestões opcionais` somente para ações adicionais que não repitam o próximo passo ou a rota.
+```
+PERGUNTA: O comando que vou sugerir é destrutivo?
+├─ DESTRUTIVOS (REQUEREM AUTORIZAÇÃO EXPLÍCITA):
+│   • git checkout -- / git restore / git reset --hard
+│   • git clean -fd / git clean -fx
+│   • rm -rf / rimraf / del /s /q
+│   • Qualquer comando que apaga dados não versionados
+├─ SIM → 🛑 PEÇA AUTORIZAÇÃO antes de sugerir.
+│        Liste exatamente o que será perdido.
+└─ NÃO → ✅ Continue para o próximo Gate.
+```
 
-5. **🛡️ Proteção de Dados Destrutivos (Anti-Bypass):**
-   - Sem autorização explícita do usuário, não execute `seed`, `reset`, `clear`, `cleanup`, `wipe`, `purge`, `rescue` nem qualquer script/comando que altere ou apague dados em massa.
-   - Se o projeto já tiver trava de segurança, é proibido criar script alternativo, alias novo ou outro caminho para contorná-la.
-   - Também é proibido editar, remover ou enfraquecer essa trava sem autorização explícita.
-   - Ao encontrar um bloqueio, pare, explique a trava e peça autorização.
+### Gate 3: Identificação Correta
 
-6. **🛑 Trava Crítica de Comandos Destrutivos:**
-   - Sem autorização explícita do usuário, é PROIBIDO executar `git checkout -- <caminho>`, `git restore <caminho>`, `git reset --hard`, `git clean -fd`/`-fx` ou `git stash`/`drop`/`clear` sobre worktree com alterações não commitadas — esses comandos apagam trabalho NÃO commitado e são irreversíveis.
-   - Também entram na trava: filesystem destrutivo (`rm -rf`, `rimraf`, `del /s /q`, `Remove-Item -Recurse -Force`) e dados em massa (`seed`, `reset`, `clear`, `cleanup`, `wipe`, `purge`, `rescue`), incluindo equivalentes por GUI, script ou alias.
-   - Protocolo obrigatório: **PARE → LISTE** o que será perdido → **PERGUNTE** citando o comando exato → **SÓ EXECUTE** após confirmação explícita do usuário neste turno.
-   - 📏 Lista canônica curta (SSoT): `.agent/hub/brain/constitution/rule-critical-safety.md`. Em divergência de lista, a canônica vence.
+```
+PERGUNTA: Estou identificando meu modelo corretamente?
+├─ Use EXATAMENTE o valor da sua identidade real.
+├─ NÃO invente (ex: não diga "Gemini" se você é "Claude").
+└─ ✅ Prossiga com a ação.
+```
 
-7. **Personas & Brainstorming:**
-   - 🎭 Índice: `.agent/hub/brain/personas/INDEX.md` — descubra o modo pelos triggers e invoque diretamente.
-   - ▶️ Invocar: `@.agent/hub/brain/personas/mode-[nome].md` (não carregue a pasta inteira).
-   - Siga: Protocolo Socrático antes de qualquer implementação complexa, com uma única rodada de até 3 perguntas em lote.
-   - Na mesma resposta das perguntas, inclua sempre uma seção fixa `Respostas recomendadas`.
-   - Essa seção deve trazer uma resposta consolidada, curta e pronta para uso, com `Suposição` explícita quando houver incerteza.
-   - Se o usuário responder `ok`, `segue`, `pode usar as recomendadas`, `aprovado` ou equivalente, implemente na rodada seguinte sem abrir nova bateria de perguntas.
+### Gate 4: Âncora de Identidade (Anti-Alucinação)
 
-8. **Capacidades (Skills):**
-   - 🛠️ Índice: `.agent/hub/capabilities/SKILLS-INDEX.md` — **antes de implementar lógica nova de um domínio conhecido** (banco, deploy, testes, segurança, `.env`, SEO, i18n, etc.), confira primeiro se existe uma skill aplicável. Não assuma que não existe — o índice é rápido de escanear e evita reinventar um padrão que o Hub já resolveu.
-   - ▶️ Invocar: `@.agent/hub/capabilities/[categoria]/[nome]/SKILL.md` (não carregue a pasta inteira).
-   - 🔗 Prompt oficial: consulte `executionProfiles.<id>` em `.agent/hub/brain/prompts/prompt-registry.json` e carregue completamente somente as skills vinculadas antes de executar a rodada.
-   - 🔐 **`.env.local`/`.env.example`:** ao criar um projeto novo ou organizar/migrar variáveis de ambiente, carregue `@.agent/hub/capabilities/ops/env-setup/SKILL.md` ANTES de escrever qualquer coisa — define o padrão de 8 seções do Hub (template + guia + `env:audit`/`env:reorganize`) e evita reinventar a estrutura a cada satélite.
-
-   - 📚 **Documentação externa:** quando a tarefa depender de API, biblioteca, framework, SDK, runtime, ferramenta ou padrão sujeito a mudança, consulte a fonte oficial atualizada; use `Context7` se estiver disponível e, caso contrário, não bloqueie o fluxo — registre a fonte e a versão utilizadas. `Context7` é documentação versionada, diferente do MCP `context-mode`, que otimiza o uso de contexto.
-
-9. **Operação do Hub no Satélite:**
-   - 📘 Leia: `.agent/hub/docs/guides/guide-satellite-hub-operations.md`
-   - Use esse guia como leitura base para entender quando aplicar `verify`, `verify:full`, `audit:quality`, `doctor:satellite`, `governance:bootstrap` e os prompts `18`, `19`, `23`, `29` e `33`.
-   - Trate `verify` e `verify:full` como governança/integridade; o comando `test` deve continuar reservado à suíte real do produto.
-   - Para mudanças funcionais, prefira testes unitários e de integração; E2E/Playwright só entram quando houver justificativa real.
-   - Nos scripts principais do Hub, use a linha `Hub vX.X.X` no começo ou no fim da saída para confirmar rapidamente qual pacote de governança o satélite está executando.
-   - Para CLIs com descoberta própria de contexto (ex: OMP, em que `.github/copilot-instructions.md` ofusca o `AGENTS.md`), rode `node .agent/hub/system/generators/build-ide.js --target omp` para gerar `.omp/AGENTS.md` + `.omp/RULES.md` (bridge de prioridade máxima + trava crítica sticky). 📖 Detalhes: `.agent/hub/docs/guides/guide-build-ide.md`.
-
-10. **♻️ Reuso Primeiro (Hooks & Helpers):**
-
-- Antes de escrever lógica nova, procure hook, helper ou utilitário equivalente já existente no projeto (`hooks/`, `utils/`, `helpers/`, `lib/`, `services/` ou pastas equivalentes).
-- Se a mesma lógica aparecer em 2 ou mais lugares (fetch, validação, formatação, efeitos, acesso a dados), **sempre sugira** a extração para um custom hook (React) ou helper/serviço nomeado — mesmo que a extração fique para uma rodada futura.
-- A extração só é aplicada com aprovação explícita do usuário (Regra Máxima de Alteração); sem aprovação, registre a sugestão no checklist final.
-- Não abstraia prematuramente: uma ocorrência única não vira helper "por precaução" (YAGNI).
-- 📖 Detalhes: `.agent/hub/brain/constitution/rule-universal-principles.md` (Seção "REUSO PRIMEIRO").
+```
+PERGUNTA: O projeto que estou editando é realmente o "meu" projeto atual?
+├─ VALIDE via: Corpus Mapping, status de memória e âncora GEMINI.
+├─ SE OPERANDO FORA DA RAIZ DO PROJETO IDENTIFICADO:
+│   • 🛑 PARE IMEDIATAMENTE. Você está em **Transgressão de Jurisdição**.
+│   • PEÇA autorização explícita para cruzar fronteiras.
+└─ ✅ Prossiga se estiver dentro da sua **competência de execução**.
+```
 
 ---
 
@@ -450,103 +429,67 @@ Vale para **qualquer** valor (fragmento ou inteiro) que chegou a lugar descobrí
 
 ---
 
-## 🚫 READ-ONLY HUB ZONE (CRITICAL - VIOLAÇÃO GRAVE)
+## 🔐 AUTO-DETECÇÃO DE CAMINHO (Obrigatório)
 
-A pasta `.agent/hub/` é um **Link do Hub Central**. Em Windows, use `junction`; em Linux/WSL, `symlink`. Exemplo canônico do Hub em ambiente Windows nativo: `D:\Agents`.
+**ANTES de editar QUALQUER arquivo:**
 
-### ⛔ PROIBIÇÕES ABSOLUTAS
+1. **Verifique** se o caminho contém `.agent/hub/`
+2. **SE CONTÉM** → RECUSE a edição imediatamente
+3. **INFORME** ao usuário: "Este arquivo está na zona READ-ONLY do Hub."
 
-| Ação                                       | Status      | Consequência                  |
-| ------------------------------------------ | ----------- | ----------------------------- |
-| Editar arquivos em `.agent/hub/`           | ❌ PROIBIDO | VIOLAÇÃO DE MEMÓRIA           |
-| Criar arquivos em `.agent/hub/`            | ❌ PROIBIDO | VIOLAÇÃO DE MEMÓRIA           |
-| Deletar arquivos em `.agent/hub/`          | ❌ PROIBIDO | VIOLAÇÃO DE MEMÓRIA           |
-| Commitar `.agent/hub/`                     | ❌ PROIBIDO | Corrompe o submodule/junction |
-| Sugerir `git checkout --` em `.agent/hub/` | ❌ PROIBIDO | Comando destrutivo            |
+**Caminhos PROIBIDOS para edição:**
 
-### ✅ AÇÕES PERMITIDAS
+- `.agent/hub/*` (TODO o conteúdo)
+- Qualquer caminho que resolva para o Hub central via `.agent/hub/` (ex.: `D:\Agents`)
 
-- **LER** arquivos do Hub para consulta de regras
-- **USAR** personas e skills do Hub
-- **REFERENCIAR** documentação do Hub
+**Caminhos PERMITIDOS:**
 
-### 🔴 Exemplos de VIOLAÇÕES (NUNCA FAÇA ISSO)
-
-```bash
-# ❌ VIOLAÇÃO: Editar arquivo do Hub
-edit .agent/hub/brain/personas/mode-backend.md
-
-# ❌ VIOLAÇÃO: Commitar o Hub
-git add .agent/hub/
-git commit -m "atualizar hub"
-
-# ❌ VIOLAÇÃO: Comandos destrutivos no Hub
-git checkout -- .agent/hub/
-git restore .agent/hub/
-```
-
-### ✅ Como Alterar Regras do Hub
-
-1. **Navegue** até o repositório original do Hub (exemplo canônico em Windows nativo: `D:\Agents`)
-2. **Faça** as alterações lá
-3. **Commit e push** no repositório do Hub
-4. **Sincronize** nos satélites (se necessário)
-
-### 📁 Memória Local
-
-Use `.agent/memory/` para armazenar informações **deste** projeto:
-
-- `project-status.md` - Estado atual, fase e objetivos do projeto
-- `gotchas.md` - Problemas conhecidos e workarounds descobertos (consulte no início de cada sessão)
-- `tasks/` - Planejamento de tarefas complexas e roadmaps
-- `templates/` — Via link do Hub: `.agent/hub/memory/templates/` (ADRs, preferências, gotchas)
-- `ui-patterns.md` — Registro de padrões canônicos de UI (header, busca+filtros, paginação, etc.), gerado sob demanda pela skill `page-composition-consistency` quando o projeto tem páginas frontend do mesmo tipo — sem template próprio, a skill cria na primeira vez que precisar
+- `.agent/memory/*` (memória local do projeto)
+- Qualquer outro arquivo do projeto
 
 ---
 
-## 🎭 Modos de Operação Disponíveis
+## 📥 REQUEST CLASSIFIER
 
-Ative o modo especialista para a tarefa atual. Cole `@modo` no chat ou use `/comando` em IDEs com slash commands.
+Classifique antes de agir:
 
-| Modo                 | Quando Usar                                     | Ativar (Cursor)       | Ativar (VSCode/TRAE) |
-| -------------------- | ----------------------------------------------- | --------------------- | -------------------- |
-| `mode-frontend`      | React, Next.js, CSS, componentes UI             | `@mode-frontend`      | `/frontend`          |
-| `mode-backend`       | API, banco de dados, Node.js, Python            | `@mode-backend`       | `/backend`           |
-| `mode-security`      | Auditoria de segurança, OWASP, vulnerabilidades | `@mode-security`      | `/security`          |
-| `mode-debugger`      | Investigação de bugs, causa raiz                | `@mode-debugger`      | `/debugger`          |
-| `mode-planner`       | Planejamento técnico, roadmap, ADRs             | `@mode-planner`       | `/planner`           |
-| `mode-quality`       | Testes, cobertura, refatoração limpa            | `@mode-quality`       | `/quality`           |
-| `mode-devops`        | CI/CD, deploy, infra, Docker                    | `@mode-devops`        | `/devops`            |
-| `mode-orchestrator`  | Tarefas complexas multi-domínio                 | `@mode-orchestrator`  | `/orchestrator`      |
-| `mode-architect`     | Design de sistema, decisões de arquitetura      | `@mode-architect`     | `/architect`         |
-| `mode-git`           | Commits, branches, PR, histórico                | `@mode-git`           | `/git`               |
-| `mode-documentation` | Docs técnicos, READMEs, guias                   | `@mode-documentation` | `/documentation`     |
-| `mode-mobile`        | React Native, Flutter, apps mobile              | `@mode-mobile`        | `/mobile`            |
-| `mode-code-reviewer` | Code review, boas práticas, qualidade de PR     | `@mode-code-reviewer` | `/code-reviewer`     |
+- **SIMPLE:** Fix/Change pontual -> Edição Direta.
+- **COMPLEX:** Build/Feature/Refactor -> Exige Plano (`task-slug.md`).
 
-> Arquivos completos em `.agent/hub/brain/personas/` (via link do Hub — READ-ONLY).
-> Em TRAE: `npm run build:ide:trae` no Hub gera `.trae/rules/project_rules.md` (constituição, injetada em toda sessão) e uma Skill por modo em `.trae/skills/<slug>/SKILL.md` (carregada só quando a tarefa exigir). Peça pelo modo (ex.: `backend`) para o Trae carregar a Skill.
-> Em Claude Code CLI: use este `AGENTS.md` como fonte canônica (bridge opcional `CLAUDE.md` via `npm run build:ide:claude` no Hub).
-> Em Kiro, Codex, Gemini CLI, Grok Build, OpenCode e Google Antigravity: o contexto persistente vem de `AGENTS.md` ou `GEMINI.md`, conforme o harness. Rode o target correspondente para receber uma Skill por modo. Codex, Gemini e Antigravity convergem em `.agents/skills/`; Kiro, Grok e OpenCode mantêm seus caminhos próprios documentados em `guide-build-ide.md`.
-> Em OMP (também conhecido como oh-my-pi): rode `npm run build:ide:omp` para o bridge de contexto e a trava crítica sticky — ver `guide-build-ide.md` para o porquê.
+## 🛑 SOCRATIC GATE (Obrigatório)
+
+Pare e pergunte antes de codar:
+
+- **New Feature:** até 3 perguntas estratégicas em uma única rodada.
+- **Bug Fix:** Confirme impacto e causa raiz.
+- **Saída obrigatória:** na mesma resposta das perguntas, inclua uma seção fixa `Respostas recomendadas`.
+- **Formato:** uma resposta consolidada, curta e pronta para uso, deixando `Suposição` explícita quando houver incerteza.
+- **Aprovação rápida:** se o usuário responder `ok`, `segue`, `pode usar as recomendadas`, `aprovado` ou equivalente, implemente na rodada seguinte sem abrir nova bateria de perguntas.
 
 ---
 
-## 🧠 Abertura de Sessão — consulte o estado antes de propor trabalho (OBRIGATÓRIO)
+## 🏗️ AGENT PROTOCOL (Hub-First)
 
-Na primeira resposta de cada sessão:
+1. **Personas:** Sempre carregue a persona adequada de `.agent/hub/brain/personas/mode-[especialista].md`.
+2. **Skills:** Utilize as ferramentas em `.agent/hub/capabilities/` conforme demanda.
+3. **Architecture:** Siga as regras globais em `.agent/hub/brain/constitution/rule-universal-principles.md` e `AGENTS.md`.
 
-```powershell
-node .agent/hub/system/scripts/hub-state.js --project .
-```
+---
 
-Devolve, numa chamada: tasks abertas com estado real, coerência entre versão declarada / CHANGELOG / log de sessão, e se a telemetria deste projeto está perdendo histórico.
+## 📚 Documentação externa atualizada
 
-**Consulte internamente e em silêncio.** Não peça ao usuário para rodar o comando, e **não relate quando não há pendência** — anunciar "está tudo certo" a cada sessão vira ruído, e ruído treina todo mundo a ignorar o aviso que importa. Mencione só o que estiver pendente.
+Para comportamento atual ou versionado de biblioteca, framework, SDK, runtime, ferramenta ou padrão sujeito a mudança, consulte a fonte oficial. Use `Context7` quando estiver disponível; se ele não estiver conectado, não bloqueie o trabalho e registre a fonte e a versão consultadas. `Context7` é documentação versionada, diferente do MCP `context-mode`, que otimiza o uso de contexto.
 
-Se um coletor falhar, o campo vem como `unavailable` com o motivo. **Ausência de achado não é prova de que não há trabalho** — só das dimensões observadas.
+---
 
-**Documentação externa junto:** quando a tarefa depender de comportamento versionado de biblioteca, framework, SDK ou runtime, consulte a documentação atual antes de decidir. Conhecimento de treinamento envelhece; contrato de biblioteca muda sem avisar.
+## 🧹 Clean Code & Standards
+
+- **Code:** Conciso, direto, sem over-engineering.
+- **Testing:** AAA Pattern (Arrange, Act, Assert). Prefira unitário + integração como baseline; Playwright/E2E só com justificativa.
+- **Git:** Commits em Português (pt-BR) seguindo Conventional Commits.
+- **Encoding:** UTF-8 BOM em todos os arquivos Markdown.
+- **Resposta:** Resultado e impacto primeiro, linguagem simples, cerca de 80–180 palavras em conclusões comuns e sem repetir informações.
+- **Fechamento:** `Fonte | Ausência | Suposição`; `Sugestões opcionais` somente quando acrescentarem algo fora do próximo passo e da rota.
 
 ---
 
@@ -561,100 +504,9 @@ Ao finalizar uma tarefa:
 5. **Mantenha proporcionalidade:** testes e review após implementação; Prompt 34 conforme risco; documentação conforme impacto; Prompt 19 opcional e parametrizado.
 6. **Mostre `Prompts executados`** em uma linha quando o lifecycle tiver uma cadeia oficial. Não reconstrua a sequência pela memória do chat.
 7. **Evite repetição:** `Próximo Passo` e `Rota recomendada` concentram as ações; `Sugestões opcionais` só acrescentam alternativas.
-8. **Fechamento honesto:** se houver task/plano, separe `Entregue` de `Pendências`; nunca chame uma onda parcial de conclusão. Com pendência, mostre próximo passo e rota. Sem pendência, declare `Pendências: nenhuma`.
+8. **Fechamento honesto:** em task/plano, separe `Entregue` de `Pendências`. Nunca chame uma onda parcial de conclusão; sem backlog, declare `Pendências: nenhuma`.
 
 > **Exemplo — feature:** **Próximo Passo:** `08-feature-build.md` — implementar o escopo fechado. **Rota recomendada:** `[condicional] 04/05/06/07 → [obrigatório] 08 → 11 → [condicional] 34 → [obrigatório] code review → [condicional] 17 → [obrigatório] 36 → [opcional] 19`.
-
----
-
-## 🏷️ Assinatura de Edição (Doc Signature)
-
-Ao alterar qualquer documento Markdown neste projeto, o agente DEVE adicionar/atualizar a assinatura no footer:
-
-```markdown
-_Última atualização: DD/MM/AAAA • vX.Y.Z_
-_Editado via: [IDE ou CLI] | Modelo: [modelo] | OS: [sistema operacional]_
-```
-
-Para docs com frontmatter YAML, usar campos no frontmatter (sem duplicar no footer):
-
-```yaml
-last-edited: DD/MM/AAAA
-last-edited-via: [IDE ou CLI]
-last-edited-model: [modelo]
-last-edited-os: [sistema operacional]
-```
-
----
-
----
-
-## 📁 Estrutura do Projeto (CalcAQ)
-
-Este é um projeto **puro HTML/CSS/JavaScript** sem build step de app (sem React/Vite). A governança do Hub adiciona tooling Node só para scripts de qualidade/hooks.
-
-```
-calcaq-app/
-├── index.html                    # Página principal (HTML semântico)
-├── app.js                        # Lógica de cálculo (JavaScript vanilla)
-├── style.css                     # Estilos (CSS3 com variáveis)
-├── PRD.md                        # Product Requirements Document
-├── AGENTS.md                     # Este arquivo
-├── README.md                     # Documentação principal
-├── CHANGELOG.md                  # Histórico de mudanças
-├── L11416.pdf                    # Lei 11.416/2006 (referência)
-├── L15292.pdf                    # Lei 15.292/2025 (referência)
-└── tabela_aq_2026.jpg            # Tabela de referência visual
-```
-
----
-
-## 🧠 Contexto do Negócio (CalcAQ)
-
-Este projeto calcula o **Adicional de Qualificação (AQ)** baseado em leis específicas do Judiciário. É **crítico** que os cálculos estejam 100% corretos conforme a legislação.
-
-### Regras Críticas a Respeitar
-
-1. **Doutorado/Mestrado não acumulam** — Prevalece a maior
-2. **Doutorado/Mestrado absorvem menores** — Exceto Capacitações (120h)
-3. **Teto de 2 VR** — Aplica-se a Pós-graduação + Graduação + Certificações
-4. **Priorização automática** — Pós → Grad → Cert (dentro do teto)
-5. **Vigência de 4 anos** — Certificações e Capacitações
-6. **Capacitações são conjuntos de 120h** — Podem ser compostas por múltiplas ações
-
-**⚠️ IMPORTANTE:** Sempre consulte `PRD.md` (e `ANALISE_INCONSISTENCIAS.md` se existir) antes de modificar cálculos ou regras de negócio.
-
----
-
-## 🛠️ Tecnologias e Padrões (produto)
-
-### HTML
-
-- Semântico (`<section>`, `<header>`, etc.)
-- Acessível (ARIA labels onde necessário)
-
-### CSS
-
-- Variáveis CSS; mobile-first; Grid/Flexbox; sem frameworks externos
-
-### JavaScript
-
-- Vanilla JS; cálculos em tempo real; vigência de datas; formatação pt-BR
-- Funções-chave: `calcular()`, `formatVR()`, `isWithinFourYears()`, `getGradOption()`
-
-### Cenários de teste críticos (cálculo)
-
-1. Doutorado + Mestrado → só Doutorado (5 VR)
-2. 2 Pós + 1 Grad → teto 2 VR (não 3)
-3. 2 Pós + 1 Grad + 2 Cert → 2 VR (Pós + Grad; Cert descartadas)
-4. Capacitações acumulam com tudo (inclusive Doutorado)
-5. Datas > 4 anos descartadas
-6. Técnico nível médio: primeira graduação conta (exceção)
-
-### Documentação local
-
-- `PRD.md`, `README.md`, `CHANGELOG.md`
-- Leis de referência: Lei 11.416/2006, Lei 15.292/2025, `tabela_aq_2026.jpg`
 
 ---
 
