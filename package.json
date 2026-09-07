@@ -1,6 +1,6 @@
 {
   "name": "calcaq-app",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": true,
   "description": "Calculadora do Adicional de Qualificação (AQ) — Judiciário",
   "scripts": {
@@ -32,7 +32,9 @@
     "workbench:serve": "node .agent/hub/system/scripts/workbench-server.js",
     "check:runtime": "node .agent/hub/system/validators/validator-node-runtime.js --satellite-local --project .",
     "state": "node .agent/hub/system/scripts/hub-state.js --project .",
-    "qa:governance": "npm run analyze:circular && npm run analyze:deps && npm run analyze:unused"
+    "qa:governance": "npm run analyze:circular && npm run analyze:deps && npm run analyze:unused",
+    "test": "node tests/aq-calc.test.js",
+    "test:unit": "node tests/aq-calc.test.js"
   },
   "devDependencies": {
     "dependency-cruiser": "^18.2.0",

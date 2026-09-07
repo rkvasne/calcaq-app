@@ -6,7 +6,7 @@ trigger: always_on
 
 > **Hub Link:** `.agent/hub/` (READ-ONLY)
 > **Priority:** P0 (GEMINI.md) > P1 (Persona) > P2 (Skill)
-> **Hub Version:** v0.11.2
+> **Hub Version:** v0.12.0
 > **Isolamento:** Hub ↔ Satélite (Governança Bidirecional)
 
 Este projeto consome inteligência centralizada do Agents Hub através de links para `.agent/hub/` (`junction` no Windows; `symlink` em Linux/WSL).
@@ -510,9 +510,9 @@ Ao finalizar uma tarefa:
 
 ---
 
-_Configurado via Agents Hub (v0.11.2)_
+_Configurado via Agents Hub (v0.12.0)_
 
 ---
 
-_Última atualização: 05/09/2026 • v0.11.2_
+_Última atualização: 06/09/2026 • v0.12.0_
 _Editado via: Grok Build | Modelo: Grok 4.5 | OS: Windows 11_

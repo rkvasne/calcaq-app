@@ -72,7 +72,7 @@ O formulário deve:
 
 - Somar esses itens
 - Aplicar corte automático ao atingir 2 VR
-- Priorizar automaticamente os títulos de maior valor
+- Priorizar automaticamente na ordem **Pós-graduação → Graduação → Certificações** (SSoT alinhada ao `app.js` / README)
 
 ### 5.4 Capacitações (120h)
 
@@ -95,7 +95,9 @@ O formulário deve:
 - Se o ingresso exigiu nível superior, aplica-se a regra geral (segunda graduação)
 - Mesmo com duas graduações, o adicional é limitado a **1 VR**
 
-### 5.7 Disposições legais adicionais (operacionais)
+### 5.7 Disposições legais adicionais (contexto — fora do formulário)
+
+> Notas da legislação para o leitor humano. **Não são campos da UI** deste produto; o reconhecimento oficial depende do órgão/tribunal.
 
 - As áreas e temas de interesse institucional são definidos por regulamento de cada órgão
 - O AQ é devido a partir da data de apresentação do título, diploma ou certificado
@@ -126,14 +128,14 @@ Itens de menor prioridade devem ser **desconsiderados automaticamente**, com avi
 
 - Checkbox para Doutorado (0 ou 1)
 - Checkbox para Mestrado (0 ou 1)
-- Campo numérico para:
+- Selects (0–N) para:
 
   - Pós-graduações (0 a 2)
   - Certificações (0 a 2)
   - Capacitações (0 a 3)
 
-- Seletor de opção única para Curso de graduação (regra do inciso VII), com opção de indicar a exceção do Técnico
-- Para Certificações e Capacitações: campo de data de conclusão para validação da vigência de 4 anos
+- Seletor de opção única (radio) para Curso de graduação (regra do inciso VII), com opção de indicar a exceção do Técnico
+- Para Certificações e Capacitações: campos de data gerados dinamicamente para validação da vigência de 4 anos
 
 ### 7.2 Cálculo Automático
 

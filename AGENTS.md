@@ -1,7 +1,7 @@
 ﻿# 🤖 AI Agents - CalcAQ
 
 > **Link do Hub:** `.agent/hub/` (Obrigatório)
-> **Hub Version:** v0.11.2
+> **Hub Version:** v0.12.0
 > **Modo:** Hub-First & SSoT (Single Source of Truth)
 
 Este projeto integra o ecossistema Agents Hub. O Agente de IA deve priorizar as definições centralizadas no Hub para comportamento e governança.
@@ -596,15 +596,20 @@ Este é um projeto **puro HTML/CSS/JavaScript** sem build step de app (sem React
 ```
 calcaq-app/
 ├── index.html                    # Página principal (HTML semântico)
-├── app.js                        # Lógica de cálculo (JavaScript vanilla)
+├── aq-calc.js                    # Regras AQ puras (testáveis, sem DOM)
+├── app.js                        # Camada DOM / UI
 ├── style.css                     # Estilos (CSS3 com variáveis)
+├── tests/
+│   └── aq-calc.test.js           # Testes unitários das regras (npm test)
+├── package.json                  # Scripts Hub + test
 ├── PRD.md                        # Product Requirements Document
 ├── AGENTS.md                     # Este arquivo
+├── GEMINI.md                     # Contrato complementar para CLIs
 ├── README.md                     # Documentação principal
 ├── CHANGELOG.md                  # Histórico de mudanças
-├── L11416.pdf                    # Lei 11.416/2006 (referência)
-├── L15292.pdf                    # Lei 15.292/2025 (referência)
-└── tabela_aq_2026.jpg            # Tabela de referência visual
+├── lei-11416-2006.pdf            # Lei 11.416/2006 (referência)
+├── lei-15292-2025.pdf            # Lei 15.292/2025 (referência)
+└── tabela-aq-2026.jpg            # Tabela de referência visual
 ```
 
 ---
@@ -640,7 +645,7 @@ Este projeto calcula o **Adicional de Qualificação (AQ)** baseado em leis espe
 ### JavaScript
 
 - Vanilla JS; cálculos em tempo real; vigência de datas; formatação pt-BR
-- Funções-chave: `calcular()`, `formatVR()`, `isWithinFourYears()`, `getGradOption()`
+- Regras em `aq-calc.js` (`calcularAQ`, `isWithinFourYears`); UI em `app.js` (`calcular`)
 
 ### Cenários de teste críticos (cálculo)
 
@@ -654,13 +659,14 @@ Este projeto calcula o **Adicional de Qualificação (AQ)** baseado em leis espe
 ### Documentação local
 
 - `PRD.md`, `README.md`, `CHANGELOG.md`
-- Leis de referência: Lei 11.416/2006, Lei 15.292/2025, `tabela_aq_2026.jpg`
+- Leis de referência: Lei 11.416/2006, Lei 15.292/2025, `tabela-aq-2026.jpg`
+- Testes: `npm test` (cenários críticos do AQ em `tests/aq-calc.test.js`)
 
 ---
 
-_Configurado via Agents Hub (v0.11.2)_
+_Configurado via Agents Hub (v0.12.0)_
 
 ---
 
-_Última atualização: 05/09/2026 • v0.11.2_
+_Última atualização: 06/09/2026 • v0.12.0_
 _Editado via: Grok Build | Modelo: Grok 4.5 | OS: Windows 11_

@@ -302,7 +302,12 @@ body {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--bg1);
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .form-field > .field-label {
@@ -370,7 +375,12 @@ body {
   border: 1px solid var(--accent-subtle);
   background: var(--accent-subtle);
   cursor: help;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
   position: relative;
 }
 
@@ -589,7 +599,12 @@ input[type="radio"] {
   padding: var(--space-2);
   margin-bottom: 0;
   border: 1px solid var(--border);
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
   box-shadow: var(--shadow);
 }
 
@@ -736,7 +751,12 @@ input[type="radio"] {
   background: var(--bg1);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border);
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .date-row input[type="date"] {
@@ -807,7 +827,12 @@ input[type="radio"] {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid var(--accent-subtle);
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
   padding-bottom: 2px;
 }
 

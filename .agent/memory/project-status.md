@@ -1,26 +1,28 @@
 # 📊 Project Status & Context
 
-> **Last Updated:** 2026-09-05
-> **Current Phase:** Release / Governança
-> **Hub:** v0.11.2 (`6abdf5ebb0c102c7d132222eeda57814ae9d8e36`, canal `auto`)
+> **Last Updated:** 2026-09-07
+> **Current Phase:** Release
+> **Produto:** v0.0.9
+> **Hub:** v0.12.0 (`62b7efd26d07…`, canal `auto`)
 
 ## 🎯 Objetivos Atuais
 
-- [x] Sincronizar governança local com o Agents Hub (Prompt 23)
-- [x] Fechar achado Hub `zappy-app#3` (madge/`npx.cmd` EINVAL) após correção upstream
-- [x] Persistir sync no remoto via Prompt 19 (checkpoint + docs + commit + push, sem bump)
-- [ ] Manter cálculos AQ 100% alinhados a `PRD.md` / legislação
+- [x] Sincronizar governança local com o Agents Hub (Prompt 23 → v0.12.0)
+- [x] Extrair regras AQ testáveis (`aq-calc.js`) e cobrir cenários críticos (`npm test`)
+- [x] Checkpoint Prompt 19: docs + testes completos + commit + push + bump patch → **v0.0.9**
+- [ ] Manter cálculos AQ 100% alinhados a `PRD.md` / legislação em mudanças futuras
 
 ## 🏗️ Arquitetura Atual
 
-- **Frontend:** HTML + CSS + JavaScript vanilla (SPA offline, sem build de app)
+- **Frontend:** HTML + CSS + JavaScript vanilla (SPA offline)
+- **Regras:** `aq-calc.js` (puro) + `app.js` (DOM)
+- **Testes:** `tests/aq-calc.test.js` via `npm test`
 - **Governança:** Agents Hub via junction `.agent/hub/` → `D:\Agents`
-- **Tooling Node:** só para scripts Hub (verify, format, doctor, hooks) — não altera o runtime do formulário
 
 ## 🔄 Tarefas em Aberto (High Level)
 
-1. Checkpoint Git da sync (commit + push sem bump)
-2. Rodadas futuras de produto: qualquer mudança de cálculo exige consulta a `PRD.md` e cenários críticos do `AGENTS.md`
+1. Qualquer mudança de cálculo: consultar `PRD.md` e rodar `npm test`
+2. Opcional: Prompt 34 (smoke browser) se houver mudança visual
 
 ## ⚠️ Riscos e Bloqueios
 
@@ -29,16 +31,16 @@
 
 ## 📝 Log de Sessão
 
-### v0.0.8 — 2026-01-19
+### 2026-09-07 — Release v0.0.9 (governança Hub + aq-calc + testes)
+
+- Versão **v0.0.9**: governança Hub v0.11.2→v0.12.0 (repin, AGENTS/GEMINI, hooks, package.json)
+- Higiene docs/código (Prompts 20/25/43/91) e estrutura kebab-case
+- `aq-calc.js` + `npm test` 25/25; removido `tests.js`
+- Prompt 19: checkpoint com bump patch, testes completos, commit e push
+- `sync:version` ausente no satélite — bump manual em `package.json` + CHANGELOG + memória (fallback esperado)
+
+### 2026-01-19 — Release v0.0.8
 
 - Correção de estilo no input de Valor do VR (setas removidas)
 - Correção de animação indesejada nas setas de inputs numéricos
 - Otimização de performance em transições CSS (`transition: all` removido)
-- Restauro da paleta azul e ajuste da seta do select (ainda em Unreleased até próximo bump)
-
-### 2026-09-05 — Prompt 23 + follow-up + Prompt 19
-
-- Sync de governança: package.json, hooks, AGENTS/GEMINI, canal auto, doctor 28/28
-- Hub dirty resolvido pelo usuário → `hub-repin` para v0.11.2
-- Achado `rkvasne/zappy-app#3` fechado após correção em `run-madge-circular.js`
-- Checkpoint: documentação + commit + push, sem testes de produto, sem bump (versão permanece v0.0.8)

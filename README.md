@@ -28,7 +28,7 @@ Formulário web simples e objetivo para calcular o **Adicional de Qualificação
 - ✅ **Validação de Datas**: Verifica vigência de 4 anos para Capacitações e Certificações.
 - ✅ **Financeiro**: Exibe o valor final em reais com VR configurável.
 - ✅ **Feedback Visual**: Indica claramente o que foi considerado e o que foi descartado.
-- ✅ **Zero Dependências**: Funciona offline, sem necessidade de servidor ou instalação.
+- ✅ **Produto sem dependências de runtime**: o formulário roda offline no navegador; tooling Node é opcional e só para governança/dev.
 
 ---
 
@@ -131,20 +131,30 @@ Os seguintes itens **competem entre si** e somados **não podem ultrapassar 2 VR
 
 ### Tecnologias Utilizadas
 
-- **HTML5** - Estrutura semântica
-- **CSS3** - Estilização moderna (variáveis CSS, Grid, Flexbox)
-- **JavaScript (Vanilla)** - Lógica de cálculo e interatividade
-- **Sem dependências externas** - Totalmente client-side
+- **HTML5** — estrutura semântica
+- **CSS3** — variáveis CSS, Grid, Flexbox
+- **JavaScript (Vanilla)** — cálculo e interatividade no navegador
+- **Runtime do produto** — sem libs de front; 100% client-side
+- **Tooling de governança (opcional)** — Node.js + scripts do Agents Hub (`npm run verify`, hooks)
 
 ### Estrutura do Projeto
 
 ```
 calcaq-app/
-├── index.html       # Aplicação principal
-├── style.css        # Folha de estilos
-├── app.js           # Lógica de negócio
-├── AGENTS.md        # Guia para Agentes de IA
-└── README.md        # Documentação
+├── index.html              # Aplicação principal
+├── style.css               # Folha de estilos
+├── aq-calc.js              # Regras AQ (puras, sem DOM)
+├── app.js                  # Camada DOM / UI
+├── tests/aq-calc.test.js   # Testes unitários (npm test)
+├── package.json            # Scripts Hub + test
+├── PRD.md                  # Requisitos de produto
+├── AGENTS.md               # Guia para agentes + governança Hub
+├── GEMINI.md               # Contrato complementar para CLIs
+├── README.md               # Documentação
+├── CHANGELOG.md            # Histórico de mudanças
+├── lei-11416-2006.pdf      # Referência legal
+├── lei-15292-2025.pdf      # Referência legal
+└── tabela-aq-2026.jpg      # Tabela visual de referência
 ```
 
 ### Convenções

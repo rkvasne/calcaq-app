@@ -9,18 +9,32 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/lang/pt-BR/).
 
 ## [Unreleased]
 
+---
+
+## [0.0.9] - 2026-09-07
+
 ### Added
 
 - Governança Agents Hub no satélite: `package.json` com scripts oficiais, Husky (`pre-commit`/`post-commit`), lint-staged, Prettier 3.9.6 e tooling de análise
 - `GEMINI.md`, `.agent/hub-channel.json` (canal `auto`), `.agent/local-exceptions.json` e bloco de retenção de telemetria no `.gitignore`
-- Domínio CalcAQ preservado dentro do `AGENTS.md` alinhado ao template Hub v0.11.2
+- Módulo `aq-calc.js` com regras AQ puras (sem DOM) e suíte `tests/aq-calc.test.js` (`npm test`)
 
 ### Changed
 
-- `AGENTS.md` sincronizado com âncoras e regras críticas do Hub (jurisdição, trava destrutiva, skills, operação do satélite)
-- Ponteiro do Hub avançado para `6abdf5eb` (Hub v0.11.2)
-- Restauro da paleta azul nas variáveis de tema
-- Ajuste do comportamento da seta do select no hover
+- `AGENTS.md` / `GEMINI.md` sincronizados com Hub **v0.12.0** (ponteiro `62b7efd2…`, canal `auto`)
+- `app.js` reduzido à camada DOM; VR padrão aplicado via `CONFIG` no `init`
+- PRD §7.1 (selects) e §5.7 (contexto legal, fora da UI); README/AGENTS com árvore atual
+- Assets em kebab-case: `lei-11416-2006.pdf`, `lei-15292-2025.pdf`, `tabela-aq-2026.jpg`
+- CSS: `transition: all` substituído por propriedades explícitas
+
+### Removed
+
+- `tests.js` legado (mock duplicado de vigência/clamp)
+
+### Fixed
+
+- Restauro da paleta azul nas variáveis de tema (pendente desde 0.0.8)
+- Ajuste do comportamento da seta do select no hover (pendente desde 0.0.8)
 
 ---
 
